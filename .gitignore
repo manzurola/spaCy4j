@@ -1,0 +1,4 @@
+# Project exclude paths
+/spacyj-api/target/
+/spacyj-clients/spacyj-clients-corenlp/target/
+/spacyj-clients/spacyj-clients-spacy-server/target/
