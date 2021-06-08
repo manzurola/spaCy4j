@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public interface Spacy {
 
-    Doc fromText(String text) throws NlpException;
+    Doc nlp(String text) throws NlpException;
 
     static Spacy create(final SpacyClient client) {
         return new Spacy() {
@@ -17,7 +17,7 @@ public interface Spacy {
             private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
             @Override
-            public Doc fromText(String text) throws NlpException {
+            public Doc nlp(String text) throws NlpException {
                 if (Objects.isNull(text) || text.isBlank()) {
                     return Doc.EMPTY;
                 }

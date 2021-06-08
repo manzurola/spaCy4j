@@ -5,7 +5,7 @@
     <parent>
         <artifactId>spacyj-clients</artifactId>
         <groupId>edu.guym.spacyj</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.1-dev</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -20,13 +20,12 @@
         <dependency>
             <groupId>edu.guym.spacyj</groupId>
             <artifactId>spacyj-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>0.1-dev</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

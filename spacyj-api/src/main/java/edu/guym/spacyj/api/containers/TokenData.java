@@ -134,19 +134,20 @@ public final class TokenData {
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         return "TokenData{" +
                 "text='" + text + '\'' +
-                ", before='" + whitespaceBefore + '\'' +
-                ", after='" + whitespaceAfter + '\'' +
+                ", whitespaceBefore='" + whitespaceBefore + '\'' +
+                ", whitespaceAfter='" + whitespaceAfter + '\'' +
                 ", index=" + index +
                 ", beginOffset=" + beginOffset +
                 ", endOffset=" + endOffset +
-                ", sentenceStart=" + sentenceStart +
-                ", pos=" + tag +
                 ", lemma='" + lemma + '\'' +
+                ", tag='" + tag + '\'' +
+                ", pos='" + pos + '\'' +
                 ", head=" + head +
-                ", dependency=" + dependency +
+                ", dependency='" + dependency + '\'' +
+                ", sentenceStart=" + sentenceStart +
                 '}';
     }
 

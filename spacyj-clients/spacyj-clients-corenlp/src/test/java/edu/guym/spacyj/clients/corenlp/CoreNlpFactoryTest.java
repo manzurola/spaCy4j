@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class CoreNlpFactoryTest {
 
-    private final static Spacy spacy = Spacy.create(new StanfordCoreSpacyClient());
+    private final static Spacy spacy = Spacy.create(new StanfordCoreNlpSpacyClient());
 
     @Test
     public void testSentences() {
@@ -39,7 +39,7 @@ public class CoreNlpFactoryTest {
         );
 
         for (String sentence : sentences) {
-            Doc parsed = spacy.fromText(sentence);
+            Doc parsed = spacy.nlp(sentence);
         }
 
         // just make sure no exception is thrown
@@ -47,33 +47,33 @@ public class CoreNlpFactoryTest {
 
     @Test
     public void verifyEmptyDoc() {
-        Doc doc = spacy.fromText("");
+        Doc doc = spacy.nlp("");
         assertEquals(Doc.EMPTY, doc);
     }
 
     @Test
     public void verifyMultipleSentences() {
-        Doc doc = spacy.fromText("Hello my name is guy. I am a nerd. this.");
+        Doc doc = spacy.nlp("Hello my name is guy. I am a nerd. this.");
         assertEquals(3, doc.sentences().size());
         assertFalse(doc.isEmpty());
     }
 
     @Test
     public void questionMark() {
-        Doc doc = spacy.fromText("?");
+        Doc doc = spacy.nlp("?");
         System.out.println(doc);
     }
 
     @Test
     void verifyEmptySentenceOnNonBreakingSpace() {
         String value = String.valueOf((char) 160);
-        Doc doc = spacy.fromText(value);
+        Doc doc = spacy.nlp(value);
         Assertions.assertEquals(Doc.create(List.of()), doc);
     }
 
     @Test
     void verifyEmojiSucceeds() {
-        Doc doc = spacy.fromText("\uD83D\uDE1C");
+        Doc doc = spacy.nlp("\uD83D\uDE1C");
         Assertions.assertNotEquals(Span.EMPTY, doc);
     }
 
@@ -116,30 +116,30 @@ public class CoreNlpFactoryTest {
     public void emptyTextEmptySentence() {
         String text = "";
         Doc expected = Doc.EMPTY;
-        Doc actual = spacy.fromText(text);
+        Doc actual = spacy.nlp(text);
         assertEquals(expected, actual);
     }
 
     @Test
     public void verifyParenthesisParse() {
         // a previous bug parsed ) as -RRB-
-        Doc doc = spacy.fromText(":)");
+        Doc doc = spacy.nlp(":)");
         assertEquals(doc.tokens().get(1).text(), ")");
     }
 
     @Test
     public void testV4() {
-        Doc s = spacy.fromText("Dole was defeated by Clinton");
+        Doc s = spacy.nlp("Dole was defeated by Clinton");
     }
 
     @Test
     void testEmoji() {
-        Doc doc = spacy.fromText("\uD83D\uDE1C");
+        Doc doc = spacy.nlp("\uD83D\uDE1C");
         System.out.println(doc);
     }
 
     private void assertExpectedSentence(String text, List<TokenData> words) {
-        Doc actual = spacy.fromText(text);
+        Doc actual = spacy.nlp(text);
         assertEquals(text, actual.text());
         assertEquals(words, actual.tokenData());
     }
