@@ -5,7 +5,7 @@
     <parent>
         <artifactId>spacyj-clients</artifactId>
         <groupId>edu.guym.spacyj</groupId>
-        <version>0.1-dev</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
