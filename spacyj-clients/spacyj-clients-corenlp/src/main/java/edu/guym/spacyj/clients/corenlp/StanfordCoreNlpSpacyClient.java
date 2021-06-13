@@ -7,7 +7,7 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.TypedDependency;
 import edu.guym.spacyj.api.SpacyClient;
 import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.exceptions.NlpException;
+import edu.guym.spacyj.api.exceptions.SpacyException;
 import edu.guym.spacyj.api.utils.PtbToUdPosMapper;
 
 import java.util.*;
@@ -30,7 +30,7 @@ public class StanfordCoreNlpSpacyClient implements SpacyClient {
     }
 
     @Override
-    public List<TokenData> nlp(String text) throws NlpException {
+    public List<TokenData> nlp(String text) throws SpacyException {
         CoreDocument document = new CoreDocument(text);
         pipeline.annotate(document);
         if (document.sentences().size() == 0) {

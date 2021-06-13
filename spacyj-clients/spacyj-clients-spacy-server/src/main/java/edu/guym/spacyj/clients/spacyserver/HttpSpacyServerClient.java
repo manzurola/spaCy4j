@@ -3,7 +3,7 @@ package edu.guym.spacyj.clients.spacyserver;
 import com.google.gson.*;
 import edu.guym.spacyj.api.SpacyClient;
 import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.exceptions.NlpException;
+import edu.guym.spacyj.api.exceptions.SpacyException;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -17,7 +17,7 @@ public class HttpSpacyServerClient implements SpacyClient {
     HttpClient client = HttpClient.newHttpClient();
 
     @Override
-    public List<TokenData> nlp(String text) throws NlpException {
+    public List<TokenData> nlp(String text) throws SpacyException {
 
         var request = HttpRequest.newBuilder(
                 URI.create("http://127.0.0.1:8080/pos"))
