@@ -7,7 +7,7 @@
     <groupId>edu.guym.spacyj</groupId>
     <artifactId>spacy-j</artifactId>
     <packaging>pom</packaging>
-    <version>0.1-dev</version>
+    <version>1.0-SNAPSHOT</version>
 
     <modules>
         <module>spacyj-api</module>
