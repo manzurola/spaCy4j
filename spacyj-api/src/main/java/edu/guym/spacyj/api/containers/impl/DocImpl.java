@@ -44,8 +44,8 @@ public final class DocImpl implements Doc {
     }
 
     @Override
-    public TokenData getTokenData(int index) {
-        return tokenData.get(index);
+    public TokenData getTokenData(int i) {
+        return tokenData.get(i);
 
     }
 
@@ -66,12 +66,12 @@ public final class DocImpl implements Doc {
     }
 
     @Override
-    public final int charStart() {
+    public final int startChar() {
         return isEmpty() ? 0 : tokenData.get(0).beginOffset();
     }
 
     @Override
-    public final int charEnd() {
+    public final int endChar() {
         return isEmpty() ? 0 : tokenData.get(size() - 1).beginOffset();
     }
 

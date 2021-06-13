@@ -60,12 +60,12 @@ public final class SpanImpl implements Span {
     }
 
     @Override
-    public final int charStart() {
+    public final int startChar() {
         return getToken(start).charStart();
     }
 
     @Override
-    public final int charEnd() {
+    public final int endChar() {
         return getToken(end - 1).charEnd();
     }
 

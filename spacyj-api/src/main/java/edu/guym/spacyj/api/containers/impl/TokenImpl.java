@@ -15,71 +15,74 @@ public final class TokenImpl implements Token {
 
     private final Doc doc;
     private final int index;
-    private final TokenData data;
 
     public TokenImpl(Doc doc, int index) {
         this.doc = doc;
         this.index = index;
-        this.data = doc.tokenData().get(index);
     }
 
     @Override
     public final String text() {
-        return data.text();
+        return data().text();
     }
 
     @Override
     public final int index() {
-        return data.index();
+        return data().index();
     }
 
     @Override
     public final int charStart() {
-        return data.beginOffset();
+        return data().beginOffset();
     }
 
     @Override
     public final int charEnd() {
-        return data.endOffset();
+        return data().endOffset();
+    }
+
+    @Override
+    public int length() {
+        return text().length();
     }
 
     @Override
     public final String spaceBefore() {
-        return data.whitespaceAfter();
+        return data().whitespaceAfter();
     }
 
     @Override
     public final String spaceAfter() {
-        return data.whitespaceAfter();
+        return data().whitespaceAfter();
     }
 
     @Override
     public final boolean isSentenceStart() {
-        return data.isSentenceStart();
+        return data().isSentenceStart();
     }
 
     @Override
     public final String tag() {
-        return data.tag();
+        return data().tag();
     }
 
     @Override
     public final String pos() {
-        return data.pos();
+        return data().pos();
     }
 
     @Override
     public final String lemma() {
-        return data.lemma();
+        return data().lemma();
     }
 
     @Override
     public final String dependency() {
-        return data.dependency();
+        return data().dependency();
     }
 
     @Override
-    public final String lowerCase() {
+    public final String lower() {
         return text().toLowerCase();
     }
 
@@ -93,8 +96,8 @@ public final class TokenImpl implements Token {
     }
 
     @Override
-    public final Optional<Token> governor() {
-        return Optional.ofNullable(doc.getToken(data.head()));
+    public final Optional<Token> head() {
+        return Optional.ofNullable(doc.getToken(data().head()));
     }
 
     @Override
@@ -103,10 +106,10 @@ public final class TokenImpl implements Token {
     }
 
     @Override
-    public final List<Token> dependencies() {
+    public final List<Token> children() {
         return doc.tokenData()
                 .stream()
-                .filter(t -> t.head() == data.index())
+                .filter(t -> t.head() == data().index())
                 .map(TokenData::index)
                 .map(doc::getToken)
                 .collect(Collectors.toList());
@@ -135,19 +138,23 @@ public final class TokenImpl implements Token {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TokenImpl token = (TokenImpl) o;
-        return data.equals(token.data);
+        return data().equals(token.data());
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(data);
+        return Objects.hash(data());
     }
 
     @Override
     public final String toString() {
         return "TokenImpl{" +
-                "data=" + data +
+                "data=" + data() +
                 '}';
+    }
+    
+    private TokenData data() {
+        return doc.tokenData().get(index);
     }
 
 
