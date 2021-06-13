@@ -23,7 +23,8 @@ public enum UdPos {
     SCONJ("SCONJ"),
     SYM("SYM"),
     VERB("VERB"),
-    X("X");
+    X("X"),
+    SPACE("SPACE");
 
     private final String tag;
 

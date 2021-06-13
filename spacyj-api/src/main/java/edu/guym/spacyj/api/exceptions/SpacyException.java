@@ -1,15 +1,15 @@
 package edu.guym.spacyj.api.exceptions;
 
-public class NlpException extends RuntimeException {
+public class SpacyException extends RuntimeException {
 
     private final String failedText;
 
-    public NlpException(String failedText) {
+    public SpacyException(String failedText) {
         super(String.format("Failed to parse text [%s]", failedText));
         this.failedText = failedText;
     }
 
-    public NlpException(Throwable cause, String failedText) {
+    public SpacyException(Throwable cause, String failedText) {
         super(String.format("Failed to parse text [%s]. Reason: [%s]", failedText, cause.getMessage()));
         this.failedText = failedText;
     }

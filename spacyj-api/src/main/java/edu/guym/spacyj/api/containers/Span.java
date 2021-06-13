@@ -17,6 +17,11 @@ public interface Span {
     }
 
     /**
+     * The parent document.
+     */
+    Doc doc();
+
+    /**
      * A string representation of the span text.
      */
     String text();
@@ -30,21 +35,27 @@ public interface Span {
     /**
      * The character offset for the start of the span.
      */
-    int charStart();
+    int startChar();
 
     /**
      * The character offset for the end of the span.
      */
-    int charEnd();
+    int endChar();
+
 
     List<Token> tokens();
 
 
-    Token getToken(int i);
+    /**
+     * Get a token at position i.
+     *
+     * @param i the index of the desired token.
+     * @throws IndexOutOfBoundsException if i is out of bounds
+     */
+    Token getToken(int i) throws IndexOutOfBoundsException;
 
     /**
      * Get the number of tokens in the span.
-     * @return
      */
     int size();
 
@@ -53,11 +64,6 @@ public interface Span {
      * only the first sentence will be returned.
      */
     Span sentence();
-
-    /**
-     * The doc that this span is a part of.
-     */
-    Doc doc();
 
     /**
      * The token offset for the start of the span.

@@ -7,30 +7,30 @@ import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.TypedDependency;
 import edu.guym.spacyj.api.SpacyClient;
 import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.exceptions.NlpException;
+import edu.guym.spacyj.api.exceptions.SpacyException;
 import edu.guym.spacyj.api.utils.PtbToUdPosMapper;
 
 import java.util.*;
 
-public class StanfordCoreSpacyClient implements SpacyClient {
+public class StanfordCoreNlpSpacyClient implements SpacyClient {
 
     private final StanfordCoreNLP pipeline;
     private final PtbToUdPosMapper udPosMapper;
 
-    public StanfordCoreSpacyClient() {
+    public StanfordCoreNlpSpacyClient() {
         Properties props = new Properties();
         props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse");
         this.pipeline = new StanfordCoreNLP(props);
         this.udPosMapper = PtbToUdPosMapper.create();
     }
 
-    public StanfordCoreSpacyClient(StanfordCoreNLP pipeline) {
+    public StanfordCoreNlpSpacyClient(StanfordCoreNLP pipeline) {
         this.pipeline = pipeline;
         this.udPosMapper = PtbToUdPosMapper.create();
     }
 
     @Override
-    public List<TokenData> nlp(String text) throws NlpException {
+    public List<TokenData> nlp(String text) throws SpacyException {
         CoreDocument document = new CoreDocument(text);
         pipeline.annotate(document);
         if (document.sentences().size() == 0) {
