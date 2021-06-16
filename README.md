@@ -1,2 +1,2 @@
 # SpacyJ
-## Spacy (and more) Adapter for Java
+## Spacy (and more) adapter for Java
