@@ -64,6 +64,7 @@ public class HttpSpacyServerAdapter implements SpacyAdapter {
                 String dep = tagObject.get("dep").getAsString();
                 String lemma = tagObject.get("lemma").getAsString();
                 boolean isPunct = tagObject.get("is_punct").getAsBoolean();
+                boolean isAlpha = tagObject.get("is_alpha").getAsBoolean();
                 boolean likeNum = tagObject.get("like_num").getAsBoolean();
 
                 TokenData token = TokenData.builder()
@@ -79,6 +80,7 @@ public class HttpSpacyServerAdapter implements SpacyAdapter {
                         .setLemma(lemma)
                         .setSentenceStart(isSentStart)
                         .setIsPunct(isPunct)
+                        .setIsAlpha(isAlpha)
                         .setLikeNum(likeNum)
                         .build();
 
