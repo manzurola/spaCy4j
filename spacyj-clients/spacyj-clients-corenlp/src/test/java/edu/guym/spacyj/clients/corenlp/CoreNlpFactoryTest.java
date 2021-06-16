@@ -58,12 +58,6 @@ public class CoreNlpFactoryTest {
     }
 
     @Test
-    public void questionMark() {
-        Doc doc = spacy.nlp("?");
-        System.out.println(doc);
-    }
-
-    @Test
     void verifyEmptySentenceOnNonBreakingSpace() {
         String value = String.valueOf((char) 160);
         Doc doc = spacy.nlp(value);
@@ -134,12 +128,6 @@ public class CoreNlpFactoryTest {
         assertTrue(doc.tokens().get(1).likeNum());
         assertTrue(doc.tokens().get(2).likeNum());
         assertTrue(doc.tokens().get(3).likeNum());
-    }
-
-
-    @Test
-    public void testV4() {
-        Doc s = spacy.nlp("Dole was defeated by Clinton");
     }
 
     @Test
