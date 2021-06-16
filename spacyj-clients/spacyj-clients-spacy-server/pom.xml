@@ -18,11 +18,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>edu.guym.spacyj</groupId>
-            <artifactId>spacyj-api</artifactId>
-            <version>0.1-dev</version>
-        </dependency>
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.8.6</version>

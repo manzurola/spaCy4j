@@ -106,6 +106,11 @@ public final class TokenImpl implements Token {
     }
 
     @Override
+    public boolean isPunct() {
+        return data().isPunct();
+    }
+
+    @Override
     public final List<Token> children() {
         return doc.tokenData()
                 .stream()

@@ -63,6 +63,7 @@ public class HttpSpacyServerClient implements SpacyClient {
                 int headIndex = tagObject.get("head_index").getAsInt();
                 String dep = tagObject.get("dep").getAsString();
                 String lemma = tagObject.get("lemma").getAsString();
+                boolean isPunct = tagObject.get("is_punct").getAsBoolean();
 
                 TokenData token = TokenData.builder()
                         .setText(tokenText)
@@ -76,6 +77,7 @@ public class HttpSpacyServerClient implements SpacyClient {
                         .setIndex(index)
                         .setLemma(lemma)
                         .setSentenceStart(isSentStart)
+                        .setIsPunct(isPunct)
                         .build();
 
                 result.add(token);

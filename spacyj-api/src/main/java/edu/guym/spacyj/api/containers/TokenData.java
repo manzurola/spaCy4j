@@ -19,6 +19,8 @@ public final class TokenData {
 
     private final boolean sentenceStart;
 
+    private final boolean isPunct;
+
     private TokenData(String text,
                       String whitespaceBefore,
                       String whitespaceAfter,
@@ -30,7 +32,7 @@ public final class TokenData {
                       String pos,
                       int head,
                       String dependency,
-                      boolean sentenceStart) {
+                      boolean sentenceStart, boolean isPunct) {
         this.text = text;
         this.whitespaceBefore = whitespaceBefore;
         this.whitespaceAfter = whitespaceAfter;
@@ -43,6 +45,7 @@ public final class TokenData {
         this.lemma = lemma;
         this.head = head;
         this.dependency = dependency;
+        this.isPunct = isPunct;
     }
 
     public static Builder builder() {
@@ -95,6 +98,10 @@ public final class TokenData {
 
     public final boolean isSentenceStart() {
         return sentenceStart;
+    }
+
+    public final boolean isPunct() {
+        return isPunct;
     }
 
     @Override
@@ -164,6 +171,7 @@ public final class TokenData {
         private int head = -1;
         private String dependency = "";
         private boolean sentenceStart = false;
+        private boolean isPunct = false;
 
         public final Builder setText(String text) {
             this.text = text;
@@ -225,6 +233,11 @@ public final class TokenData {
             return this;
         }
 
+        public final Builder setIsPunct(boolean isPunct) {
+            this.isPunct = isPunct;
+            return this;
+        }
+
         public final TokenData build() {
             return new TokenData(
                     text,
@@ -238,7 +251,8 @@ public final class TokenData {
                     pos,
                     head,
                     dependency,
-                    sentenceStart);
+                    sentenceStart,
+                    isPunct);
         }
     }
 }

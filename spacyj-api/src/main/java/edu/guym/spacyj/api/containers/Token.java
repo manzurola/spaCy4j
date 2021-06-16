@@ -118,6 +118,12 @@ public interface Token {
     }
 
     /**
+     * Is the token punctuation?
+     * @return
+     */
+    boolean isPunct();
+
+    /**
      * Returns an Optional after applying predicate to Token.
      * @param predicate
      */

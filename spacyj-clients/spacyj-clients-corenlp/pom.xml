@@ -19,11 +19,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>edu.guym.spacyj</groupId>
-            <artifactId>spacyj-api</artifactId>
-            <version>0.1-dev</version>
-        </dependency>
-        <dependency>
             <groupId>edu.stanford.nlp</groupId>
             <artifactId>stanford-corenlp</artifactId>
             <version>${stanford-corenlp.version}</version>
