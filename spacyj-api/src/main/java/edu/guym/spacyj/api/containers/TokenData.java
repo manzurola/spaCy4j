@@ -20,6 +20,8 @@ public final class TokenData {
     private final boolean sentenceStart;
 
     private final boolean isPunct;
+    private final boolean isAlpha;
+    private final boolean likeNum;
 
     private TokenData(String text,
                       String whitespaceBefore,
@@ -32,7 +34,10 @@ public final class TokenData {
                       String pos,
                       int head,
                       String dependency,
-                      boolean sentenceStart, boolean isPunct) {
+                      boolean sentenceStart,
+                      boolean isPunct,
+                      boolean isAlpha,
+                      boolean likeNum) {
         this.text = text;
         this.whitespaceBefore = whitespaceBefore;
         this.whitespaceAfter = whitespaceAfter;
@@ -46,6 +51,8 @@ public final class TokenData {
         this.head = head;
         this.dependency = dependency;
         this.isPunct = isPunct;
+        this.isAlpha = isAlpha;
+        this.likeNum = likeNum;
     }
 
     public static Builder builder() {
@@ -104,58 +111,12 @@ public final class TokenData {
         return isPunct;
     }
 
-    @Override
-    public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TokenData tokenData = (TokenData) o;
-        return index == tokenData.index &&
-                beginOffset == tokenData.beginOffset &&
-                endOffset == tokenData.endOffset &&
-                head == tokenData.head &&
-                sentenceStart == tokenData.sentenceStart &&
-                Objects.equals(text, tokenData.text) &&
-                Objects.equals(whitespaceBefore, tokenData.whitespaceBefore) &&
-                Objects.equals(whitespaceAfter, tokenData.whitespaceAfter) &&
-                Objects.equals(lemma, tokenData.lemma) &&
-                Objects.equals(tag, tokenData.tag) &&
-                Objects.equals(pos, tokenData.pos) &&
-                Objects.equals(dependency, tokenData.dependency);
+    public final boolean isAlpha() {
+        return isAlpha;
     }
 
-    @Override
-    public final int hashCode() {
-        return Objects.hash(
-                text,
-                whitespaceBefore,
-                whitespaceAfter,
-                index,
-                beginOffset,
-                endOffset,
-                lemma,
-                tag,
-                pos,
-                head,
-                dependency,
-                sentenceStart);
-    }
-
-    @Override
-    public String toString() {
-        return "TokenData{" +
-                "text='" + text + '\'' +
-                ", whitespaceBefore='" + whitespaceBefore + '\'' +
-                ", whitespaceAfter='" + whitespaceAfter + '\'' +
-                ", index=" + index +
-                ", beginOffset=" + beginOffset +
-                ", endOffset=" + endOffset +
-                ", lemma='" + lemma + '\'' +
-                ", tag='" + tag + '\'' +
-                ", pos='" + pos + '\'' +
-                ", head=" + head +
-                ", dependency='" + dependency + '\'' +
-                ", sentenceStart=" + sentenceStart +
-                '}';
+    public final boolean likeNum() {
+        return likeNum;
     }
 
     public static final class Builder {
@@ -172,6 +133,8 @@ public final class TokenData {
         private String dependency = "";
         private boolean sentenceStart = false;
         private boolean isPunct = false;
+        private boolean isAlpha = false;
+        private boolean likeNum = false;
 
         public final Builder setText(String text) {
             this.text = text;
@@ -238,6 +201,16 @@ public final class TokenData {
             return this;
         }
 
+        public final Builder setIsAlpha(boolean isAlpha) {
+            this.isAlpha = isAlpha;
+            return this;
+        }
+
+        public final Builder setLikeNum(boolean likeNum) {
+            this.likeNum = likeNum;
+            return this;
+        }
+
         public final TokenData build() {
             return new TokenData(
                     text,
@@ -252,7 +225,45 @@ public final class TokenData {
                     head,
                     dependency,
                     sentenceStart,
-                    isPunct);
+                    isPunct,
+                    isAlpha,
+                    likeNum);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TokenData tokenData = (TokenData) o;
+        return index == tokenData.index && beginOffset == tokenData.beginOffset && endOffset == tokenData.endOffset && head == tokenData.head && sentenceStart == tokenData.sentenceStart && isPunct == tokenData.isPunct && isAlpha == tokenData.isAlpha && likeNum == tokenData.likeNum && text.equals(tokenData.text) && whitespaceBefore.equals(tokenData.whitespaceBefore) && whitespaceAfter.equals(tokenData.whitespaceAfter) && lemma.equals(tokenData.lemma) && tag.equals(tokenData.tag) && pos.equals(tokenData.pos) && dependency.equals(tokenData.dependency);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(text, whitespaceBefore, whitespaceAfter, index, beginOffset, endOffset, lemma, tag, pos, head, dependency, sentenceStart, isPunct, isAlpha, likeNum);
+    }
+
+    @Override
+    public String toString() {
+        return "TokenData{" +
+                "text='" + text + '\'' +
+                ", whitespaceBefore='" + whitespaceBefore + '\'' +
+                ", whitespaceAfter='" + whitespaceAfter + '\'' +
+                ", index=" + index +
+                ", beginOffset=" + beginOffset +
+                ", endOffset=" + endOffset +
+                ", lemma='" + lemma + '\'' +
+                ", tag='" + tag + '\'' +
+                ", pos='" + pos + '\'' +
+                ", head=" + head +
+                ", dependency='" + dependency + '\'' +
+                ", sentenceStart=" + sentenceStart +
+                ", isPunct=" + isPunct +
+                ", isAlpha=" + isAlpha +
+                ", likeNum=" + likeNum +
+                '}';
+    }
+
+
 }

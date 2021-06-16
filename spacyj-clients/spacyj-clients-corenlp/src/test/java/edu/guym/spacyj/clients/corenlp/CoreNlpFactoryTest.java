@@ -78,36 +78,36 @@ public class CoreNlpFactoryTest {
     }
 
     @Test
-    public void createAndVerifyGrammaticallyCorrectShortSentence() {
+    public void createAndVerifyShortSentence() {
         String text = "My dog is hungry.";
         List<TokenData> expectedWords = Arrays.asList(
-                TokenData.builder().setText("My").setBefore("").setAfter(" ").setIndex(0).setBeginOffset(0).setEndOffset(2).setLemma("my").setTag("PRP$").setPos("DET").setHead(1).setDependency("nmod:poss").setSentenceStart(true).build(),
-                TokenData.builder().setText("dog").setBefore(" ").setAfter(" ").setIndex(1).setBeginOffset(3).setEndOffset(6).setLemma("dog").setTag("NN").setPos("NOUN").setHead(3).setDependency("nsubj").setSentenceStart(false).build(),
-                TokenData.builder().setText("is").setBefore(" ").setAfter(" ").setIndex(2).setBeginOffset(7).setEndOffset(9).setLemma("be").setTag("VBZ").setPos("VERB").setHead(3).setDependency("cop").setSentenceStart(false).build(),
-                TokenData.builder().setText("hungry").setBefore(" ").setAfter("").setIndex(3).setBeginOffset(10).setEndOffset(16).setLemma("hungry").setTag("JJ").setPos("ADJ").setHead(-1).setDependency("root").setSentenceStart(false).build(),
-                TokenData.builder().setText(".").setBefore("").setAfter("").setIndex(4).setBeginOffset(16).setEndOffset(17).setLemma(".").setTag(".").setPos("PUNCT").setHead(3).setDependency("punct").setSentenceStart(false).build()
+                TokenData.builder().setText("My").setBefore("").setAfter(" ").setIndex(0).setBeginOffset(0).setEndOffset(2).setLemma("my").setTag("PRP$").setPos("DET").setHead(1).setDependency("nmod:poss").setIsAlpha(true).setSentenceStart(true).build(),
+                TokenData.builder().setText("dog").setBefore(" ").setAfter(" ").setIndex(1).setBeginOffset(3).setEndOffset(6).setLemma("dog").setTag("NN").setPos("NOUN").setHead(3).setDependency("nsubj").setIsAlpha(true).build(),
+                TokenData.builder().setText("is").setBefore(" ").setAfter(" ").setIndex(2).setBeginOffset(7).setEndOffset(9).setLemma("be").setTag("VBZ").setPos("VERB").setHead(3).setDependency("cop").setIsAlpha(true).build(),
+                TokenData.builder().setText("hungry").setBefore(" ").setAfter("").setIndex(3).setBeginOffset(10).setEndOffset(16).setLemma("hungry").setTag("JJ").setPos("ADJ").setHead(-1).setDependency("root").setIsAlpha(true).build(),
+                TokenData.builder().setText(".").setBefore("").setAfter("").setIndex(4).setBeginOffset(16).setEndOffset(17).setLemma(".").setTag(".").setPos("PUNCT").setHead(3).setDependency("punct").setIsPunct(true).build()
         );
         assertExpectedSentence(text, expectedWords);
     }
 
     @Test
-    public void createAndVerifyGrammaticallyCorrectLongSentence() {
+    public void createAndVerifyLongSentence() {
         String text = "The moon is very bright; I can read a book by it.";
         List<TokenData> expectedWords = Arrays.asList(
-                TokenData.builder().setText("The").setBefore("").setAfter(" ").setIndex(0).setBeginOffset(0).setEndOffset(3).setLemma("the").setTag("DT").setPos("DET").setHead(1).setDependency("det").setSentenceStart(true).build(),
-                TokenData.builder().setText("moon").setBefore(" ").setAfter(" ").setIndex(1).setBeginOffset(4).setEndOffset(8).setLemma("moon").setTag("NN").setPos("NOUN").setHead(4).setDependency("nsubj").setSentenceStart(false).build(),
-                TokenData.builder().setText("is").setBefore(" ").setAfter(" ").setIndex(2).setBeginOffset(9).setEndOffset(11).setLemma("be").setTag("VBZ").setPos("VERB").setHead(4).setDependency("cop").setSentenceStart(false).build(),
-                TokenData.builder().setText("very").setBefore(" ").setAfter(" ").setIndex(3).setBeginOffset(12).setEndOffset(16).setLemma("very").setTag("RB").setPos("ADV").setHead(4).setDependency("advmod").setSentenceStart(false).build(),
-                TokenData.builder().setText("bright").setBefore(" ").setAfter("").setIndex(4).setBeginOffset(17).setEndOffset(23).setLemma("bright").setTag("JJ").setPos("ADJ").setHead(-1).setDependency("root").setSentenceStart(false).build(),
-                TokenData.builder().setText(";").setBefore("").setAfter(" ").setIndex(5).setBeginOffset(23).setEndOffset(24).setLemma(";").setTag(":").setPos("PUNCT").setHead(4).setDependency("punct").setSentenceStart(false).build(),
-                TokenData.builder().setText("I").setBefore(" ").setAfter(" ").setIndex(6).setBeginOffset(25).setEndOffset(26).setLemma("I").setTag("PRP").setPos("PRON").setHead(8).setDependency("nsubj").setSentenceStart(false).build(),
-                TokenData.builder().setText("can").setBefore(" ").setAfter(" ").setIndex(7).setBeginOffset(27).setEndOffset(30).setLemma("can").setTag("MD").setPos("VERB").setHead(8).setDependency("aux").setSentenceStart(false).build(),
-                TokenData.builder().setText("read").setBefore(" ").setAfter(" ").setIndex(8).setBeginOffset(31).setEndOffset(35).setLemma("read").setTag("VB").setPos("VERB").setHead(4).setDependency("parataxis").setSentenceStart(false).build(),
-                TokenData.builder().setText("a").setBefore(" ").setAfter(" ").setIndex(9).setBeginOffset(36).setEndOffset(37).setLemma("a").setTag("DT").setPos("DET").setHead(10).setDependency("det").setSentenceStart(false).build(),
-                TokenData.builder().setText("book").setBefore(" ").setAfter(" ").setIndex(10).setBeginOffset(38).setEndOffset(42).setLemma("book").setTag("NN").setPos("NOUN").setHead(8).setDependency("obj").setSentenceStart(false).build(),
-                TokenData.builder().setText("by").setBefore(" ").setAfter(" ").setIndex(11).setBeginOffset(43).setEndOffset(45).setLemma("by").setTag("IN").setPos("ADP").setHead(12).setDependency("case").setSentenceStart(false).build(),
-                TokenData.builder().setText("it").setBefore(" ").setAfter("").setIndex(12).setBeginOffset(46).setEndOffset(48).setLemma("it").setTag("PRP").setPos("PRON").setHead(8).setDependency("obl").setSentenceStart(false).build(),
-                TokenData.builder().setText(".").setBefore("").setAfter("").setIndex(13).setBeginOffset(48).setEndOffset(49).setLemma(".").setTag(".").setPos("PUNCT").setHead(4).setDependency("punct").setSentenceStart(false).build()
+                TokenData.builder().setText("The").setBefore("").setAfter(" ").setIndex(0).setBeginOffset(0).setEndOffset(3).setLemma("the").setTag("DT").setPos("DET").setHead(1).setDependency("det").setSentenceStart(true).setIsAlpha(true).build(),
+                TokenData.builder().setText("moon").setBefore(" ").setAfter(" ").setIndex(1).setBeginOffset(4).setEndOffset(8).setLemma("moon").setTag("NN").setPos("NOUN").setHead(4).setDependency("nsubj").setIsAlpha(true).build(),
+                TokenData.builder().setText("is").setBefore(" ").setAfter(" ").setIndex(2).setBeginOffset(9).setEndOffset(11).setLemma("be").setTag("VBZ").setPos("VERB").setHead(4).setDependency("cop").setIsAlpha(true).build(),
+                TokenData.builder().setText("very").setBefore(" ").setAfter(" ").setIndex(3).setBeginOffset(12).setEndOffset(16).setLemma("very").setTag("RB").setPos("ADV").setHead(4).setDependency("advmod").setIsAlpha(true).build(),
+                TokenData.builder().setText("bright").setBefore(" ").setAfter("").setIndex(4).setBeginOffset(17).setEndOffset(23).setLemma("bright").setTag("JJ").setPos("ADJ").setHead(-1).setDependency("root").setIsAlpha(true).build(),
+                TokenData.builder().setText(";").setBefore("").setAfter(" ").setIndex(5).setBeginOffset(23).setEndOffset(24).setLemma(";").setTag(":").setPos("PUNCT").setHead(4).setDependency("punct").setIsPunct(true).build(),
+                TokenData.builder().setText("I").setBefore(" ").setAfter(" ").setIndex(6).setBeginOffset(25).setEndOffset(26).setLemma("I").setTag("PRP").setPos("PRON").setHead(8).setDependency("nsubj").setIsAlpha(true).build(),
+                TokenData.builder().setText("can").setBefore(" ").setAfter(" ").setIndex(7).setBeginOffset(27).setEndOffset(30).setLemma("can").setTag("MD").setPos("VERB").setHead(8).setDependency("aux").setIsAlpha(true).build(),
+                TokenData.builder().setText("read").setBefore(" ").setAfter(" ").setIndex(8).setBeginOffset(31).setEndOffset(35).setLemma("read").setTag("VB").setPos("VERB").setHead(4).setDependency("parataxis").setIsAlpha(true).build(),
+                TokenData.builder().setText("a").setBefore(" ").setAfter(" ").setIndex(9).setBeginOffset(36).setEndOffset(37).setLemma("a").setTag("DT").setPos("DET").setHead(10).setDependency("det").setIsAlpha(true).build(),
+                TokenData.builder().setText("book").setBefore(" ").setAfter(" ").setIndex(10).setBeginOffset(38).setEndOffset(42).setLemma("book").setTag("NN").setPos("NOUN").setHead(8).setDependency("obj").setIsAlpha(true).build(),
+                TokenData.builder().setText("by").setBefore(" ").setAfter(" ").setIndex(11).setBeginOffset(43).setEndOffset(45).setLemma("by").setTag("IN").setPos("ADP").setHead(12).setDependency("case").setIsAlpha(true).build(),
+                TokenData.builder().setText("it").setBefore(" ").setAfter("").setIndex(12).setBeginOffset(46).setEndOffset(48).setLemma("it").setTag("PRP").setPos("PRON").setHead(8).setDependency("obl").setIsAlpha(true).build(),
+                TokenData.builder().setText(".").setBefore("").setAfter("").setIndex(13).setBeginOffset(48).setEndOffset(49).setLemma(".").setTag(".").setPos("PUNCT").setHead(4).setDependency("punct").setIsPunct(true).build()
         );
         assertExpectedSentence(text, expectedWords);
     }

@@ -111,21 +111,22 @@ public interface Token {
     boolean isRoot();
 
     /**
-     * Does the token consist of alphabetic characters? Equivalent to text().chars().allMatch(Character::isLetter).
+     * Does the token consist of only alphabetic characters?
      */
-    default boolean isAlpha() {
-        return text().chars().allMatch(Character::isLetter);
-    }
+    boolean isAlpha();
 
     /**
      * Is the token punctuation?
-     * @return
      */
     boolean isPunct();
 
     /**
+     * Does the token represent a number? e.g. “10.9”, “10”, “ten”, etc.
+     */
+    boolean likeNum();
+
+    /**
      * Returns an Optional after applying predicate to Token.
-     * @param predicate
      */
     default Optional<Token> filter(Predicate<Token> predicate) {
         return Optional.of(this).filter(predicate);
@@ -133,7 +134,6 @@ public interface Token {
 
     /**
      * Returns the result of applying predicate to Token.
-     * @param predicate
      */
     default boolean matches(Predicate<Token> predicate) {
         return this.filter(predicate).isPresent();

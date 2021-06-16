@@ -106,8 +106,18 @@ public final class TokenImpl implements Token {
     }
 
     @Override
+    public boolean isAlpha() {
+        return data().isAlpha();
+    }
+
+    @Override
     public boolean isPunct() {
         return data().isPunct();
+    }
+
+    @Override
+    public boolean likeNum() {
+        return data().likeNum();
     }
 
     @Override

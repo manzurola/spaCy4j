@@ -1,5 +1,6 @@
 package edu.guym.spacyj.clients.corenlp;
 
+import edu.guym.spacyj.api.features.UdPos;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreSentence;
@@ -60,8 +61,9 @@ public class StanfordCoreNlpSpacyClient implements SpacyClient {
                     head = currentSentenceOffset + adaptCoreLabelIndex(coreNlpDependency.get().gov().index());
                 }
 
+                String text = coreLabel.originalText();
                 words.add(TokenData.builder()
-                        .setText(coreLabel.originalText())
+                        .setText(text)
                         .setBefore(coreLabel.before())
                         .setAfter(coreLabel.after())
                         .setIndex(tokenIndex)
@@ -73,6 +75,9 @@ public class StanfordCoreNlpSpacyClient implements SpacyClient {
                         .setHead(head)
                         .setDependency(dep)
                         .setSentenceStart(isSentenceStart)
+                        .setIsAlpha(text.chars().allMatch(Character::isLetter))
+                        .setIsPunct(UdPos.PUNCT.matches(pos))
+                        .setLikeNum(UdPos.NUM.matches(pos))
                         .build());
 
                 tokenIndex++;
