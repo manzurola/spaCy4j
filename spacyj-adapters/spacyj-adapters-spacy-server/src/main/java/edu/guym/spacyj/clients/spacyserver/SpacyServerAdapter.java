@@ -14,16 +14,28 @@ import java.util.List;
 
 public class SpacyServerAdapter implements SpacyAdapter {
 
-    HttpClient client = HttpClient.newHttpClient();
+    private final URI uri;
+    private final HttpClient client;
+
+    public SpacyServerAdapter() {
+        this("localhost", 8080);
+    }
+
+    public SpacyServerAdapter(String httpHost, int httpPort) {
+        this("http", httpHost, httpPort);
+    }
+
+    public SpacyServerAdapter(String httpProtocol, String httpHost, int httpPort) {
+        this.uri = URI.create(String.format("%s://%s:%d/pos", httpProtocol, httpHost, httpPort));
+        this.client = HttpClient.newHttpClient();
+    }
 
     @Override
     public List<TokenData> nlp(String text) throws SpacyException {
-
-        var request = HttpRequest.newBuilder(
-                URI.create("http://127.0.0.1:8080/pos"))
+        var request = HttpRequest.newBuilder(uri)
                 .header("accept", "application/json")
                 .version(HttpClient.Version.HTTP_1_1)
-                .POST(HttpRequest.BodyPublishers.ofString("{\n" + "  \"text\": \"" + text + "\"\n" + "}"))
+                .POST(HttpRequest.BodyPublishers.ofString(String.format("{\"text\":\"%s\"}", text)))
                 .build();
 
         HttpResponse<String> response = null;
@@ -33,16 +45,13 @@ public class SpacyServerAdapter implements SpacyAdapter {
             throw new RuntimeException(e);
         }
 
-        List<TokenData> tokenData = parseResponse(response.body());
-
-        return tokenData;
+        return fromJson(response.body());
     }
 
-    private List<TokenData> parseResponse(String body) {
+    private List<TokenData> fromJson(String body) {
 
         List<TokenData> result = new ArrayList<>();
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonElement json = JsonParser.parseString(body);
 
         JsonArray data = json.getAsJsonObject().get("data").getAsJsonArray();
