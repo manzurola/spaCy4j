@@ -1,6 +1,6 @@
 package edu.guym.spacyj.clients.corenlp;
 
-import edu.guym.spacyj.api.features.UdPos;
+import edu.guym.spacyj.api.features.Pos;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreSentence;
@@ -76,8 +76,8 @@ public class StanfordCoreNlpSpacyAdapter implements SpacyAdapter {
                         .setDependency(dep)
                         .setSentenceStart(isSentenceStart)
                         .setIsAlpha(text.chars().allMatch(Character::isLetter))
-                        .setIsPunct(UdPos.PUNCT.matches(pos))
-                        .setLikeNum(UdPos.NUM.matches(pos))
+                        .setIsPunct(Pos.PUNCT.matches(pos))
+                        .setLikeNum(Pos.NUM.matches(pos))
                         .build());
 
                 tokenIndex++;

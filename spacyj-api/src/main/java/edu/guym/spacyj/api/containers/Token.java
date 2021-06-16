@@ -106,11 +106,6 @@ public interface Token {
     List<Token> children();
 
     /**
-     * Is this token the root of the parent sentence?
-     */
-    boolean isRoot();
-
-    /**
      * Does the token consist of only alphabetic characters?
      */
     boolean isAlpha();

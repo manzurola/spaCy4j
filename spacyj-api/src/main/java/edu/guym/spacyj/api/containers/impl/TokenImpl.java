@@ -101,11 +101,6 @@ public final class TokenImpl implements Token {
     }
 
     @Override
-    public final boolean isRoot() {
-        return Dependency.ROOT.matches(dependency());
-    }
-
-    @Override
     public boolean isAlpha() {
         return data().isAlpha();
     }

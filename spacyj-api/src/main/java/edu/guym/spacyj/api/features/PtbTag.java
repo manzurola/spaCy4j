@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
  * Penn Treebank Parts of Speech
  *
  */
-public enum PtbPos {
+public enum PtbTag {
 
     CC("CC"),
     CD("CD"),
@@ -61,7 +61,7 @@ public enum PtbPos {
 
     private final String tag;
 
-    PtbPos(String tag) {
+    PtbTag(String tag) {
         this.tag = tag;
     }
 
@@ -75,15 +75,15 @@ public enum PtbPos {
     }
 
     @Deprecated
-    public static PtbPos ofTag(String tag) {
+    public static PtbTag ofTag(String tag) {
         Objects.requireNonNull(tag);
-        return Arrays.stream(PtbPos.values()).filter(pos -> pos.matches(tag))
+        return Arrays.stream(PtbTag.values()).filter(pos -> pos.matches(tag))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Unknown pt pos tag " + tag));
     }
 
-    public static Set<PtbPos> all() {
-        return Arrays.stream(PtbPos.values()).collect(Collectors.toSet());
+    public static Set<PtbTag> all() {
+        return Arrays.stream(PtbTag.values()).collect(Collectors.toSet());
     }
 
     public final String tag() {
