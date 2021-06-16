@@ -11,7 +11,7 @@
 
     <modules>
         <module>spacyj-api</module>
-        <module>spacyj-clients</module>
+        <module>spacyj-adapters</module>
     </modules>
 
     <properties>

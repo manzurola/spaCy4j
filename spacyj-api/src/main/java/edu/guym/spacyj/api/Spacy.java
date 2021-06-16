@@ -11,7 +11,7 @@ public interface Spacy {
 
     Doc nlp(String text) throws SpacyException;
 
-    static Spacy create(final SpacyClient client) {
+    static Spacy create(final SpacyAdapter client) {
         return new Spacy() {
 
             private final Logger logger = LoggerFactory.getLogger(this.getClass());
