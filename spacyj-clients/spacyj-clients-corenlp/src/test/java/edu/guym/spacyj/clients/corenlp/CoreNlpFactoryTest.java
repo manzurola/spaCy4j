@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class CoreNlpFactoryTest {
 
@@ -126,6 +125,17 @@ public class CoreNlpFactoryTest {
         Doc doc = spacy.nlp(":)");
         assertEquals(doc.tokens().get(1).text(), ")");
     }
+
+    @Test
+    public void verifyLikeNum() {
+        // a previous bug parsed ) as -RRB-
+        Doc doc = spacy.nlp("ten 10.5 one thousand");
+        assertTrue(doc.tokens().get(0).likeNum());
+        assertTrue(doc.tokens().get(1).likeNum());
+        assertTrue(doc.tokens().get(2).likeNum());
+        assertTrue(doc.tokens().get(3).likeNum());
+    }
+
 
     @Test
     public void testV4() {
