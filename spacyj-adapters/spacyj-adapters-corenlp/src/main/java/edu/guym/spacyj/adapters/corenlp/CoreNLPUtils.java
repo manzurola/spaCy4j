@@ -1,4 +1,4 @@
-package edu.guym.spacyj.clients.corenlp;
+package edu.guym.spacyj.adapters.corenlp;
 
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 

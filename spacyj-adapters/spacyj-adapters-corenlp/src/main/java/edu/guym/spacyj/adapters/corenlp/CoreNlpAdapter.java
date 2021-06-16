@@ -1,4 +1,4 @@
-package edu.guym.spacyj.clients.corenlp;
+package edu.guym.spacyj.adapters.corenlp;
 
 import edu.guym.spacyj.api.features.Pos;
 import edu.stanford.nlp.ling.CoreLabel;

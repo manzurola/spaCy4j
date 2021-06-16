@@ -1,4 +1,4 @@
-package edu.guym.spacyj.clients.spacyserver;
+package edu.guym.spacyj.adapters.spacyserver;
 
 import com.google.gson.*;
 import edu.guym.spacyj.api.SpacyAdapter;

@@ -1,4 +1,4 @@
-package edu.guym.spacyj.clients.corenlp.corenlpexamples;
+package edu.guym.spacyj.adapters.corenlp.corenlpexamples;
 
 import edu.stanford.nlp.coref.data.CorefChain;
 import edu.stanford.nlp.ie.util.RelationTriple;
