@@ -5,16 +5,24 @@ import edu.guym.spacyj.api.containers.Doc;
 import edu.guym.spacyj.api.containers.Span;
 import edu.guym.spacyj.api.containers.TokenData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CoreNlpFactoryTest {
 
-    private final static Spacy spacy = Spacy.create(new StanfordCoreNlpSpacyAdapter());
+    private Spacy spacy;
+
+    @BeforeAll
+    void setSpacy() {
+        spacy = Spacy.create(new StanfordCoreNlpSpacyAdapter());
+    }
 
     @Test
     public void testSentences() {

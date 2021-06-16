@@ -8,6 +8,7 @@ import edu.stanford.nlp.pipeline.*;
 import edu.stanford.nlp.semgraph.SemanticGraph;
 import edu.stanford.nlp.simple.Sentence;
 import edu.stanford.nlp.trees.Tree;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+@Disabled
 public class CoreNLPUsageExample {
 
     @Test
