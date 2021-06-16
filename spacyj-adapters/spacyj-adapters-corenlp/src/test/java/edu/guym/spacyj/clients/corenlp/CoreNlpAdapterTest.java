@@ -15,13 +15,13 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CoreNlpFactoryTest {
+public class CoreNlpAdapterTest {
 
     private Spacy spacy;
 
     @BeforeAll
     void setSpacy() {
-        spacy = Spacy.create(new StanfordCoreNlpSpacyAdapter());
+        spacy = Spacy.create(new CoreNlpAdapter());
     }
 
     @Test

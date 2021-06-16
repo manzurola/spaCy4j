@@ -12,7 +12,7 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HttpSpacyServerAdapter implements SpacyAdapter {
+public class SpacyServerAdapter implements SpacyAdapter {
 
     HttpClient client = HttpClient.newHttpClient();
 
