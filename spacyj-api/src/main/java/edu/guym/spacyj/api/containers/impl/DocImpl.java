@@ -17,7 +17,7 @@ public final class DocImpl implements Doc {
     private final List<TokenData> tokenData;
 
     public DocImpl(List<TokenData> tokenData) {
-        this.text = TokenTextWriter.getInstance().getText(tokenData);
+        this.text = TokenTextPrinter.getInstance().print(tokenData);
         this.tokenData = Objects.requireNonNull(tokenData);
     }
 

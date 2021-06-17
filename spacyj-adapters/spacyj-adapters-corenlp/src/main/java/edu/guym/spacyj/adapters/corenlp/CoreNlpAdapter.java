@@ -1,37 +1,53 @@
 package edu.guym.spacyj.adapters.corenlp;
 
+import edu.guym.spacyj.api.SpacyAdapter;
+import edu.guym.spacyj.api.containers.TokenData;
+import edu.guym.spacyj.api.exceptions.SpacyException;
 import edu.guym.spacyj.api.features.Pos;
+import edu.guym.spacyj.api.utils.PtbToUdPosMapper;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreSentence;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.TypedDependency;
-import edu.guym.spacyj.api.SpacyAdapter;
-import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.exceptions.SpacyException;
-import edu.guym.spacyj.api.utils.PtbToUdPosMapper;
 
 import java.util.*;
 
-public class CoreNlpAdapter implements SpacyAdapter {
+/**
+ * Stanford CoreNLP Java client adapter. Loads in memory.
+ * Adapts the corenlp tokens as if they were spaCy's: Index starts at 0, supports likeNum, isPunct etc.
+ */
+public final class CoreNlpAdapter implements SpacyAdapter {
 
     private final StanfordCoreNLP pipeline;
     private final PtbToUdPosMapper udPosMapper;
 
-    public CoreNlpAdapter() {
-        Properties props = new Properties();
-        props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse");
-        this.pipeline = new StanfordCoreNLP(props);
-        this.udPosMapper = PtbToUdPosMapper.create();
-    }
-
-    public CoreNlpAdapter(StanfordCoreNLP pipeline) {
+    private CoreNlpAdapter(StanfordCoreNLP pipeline) {
         this.pipeline = pipeline;
         this.udPosMapper = PtbToUdPosMapper.create();
     }
 
+    /**
+     * Create a CoreNlpAdapter with a StanfordCoreNLP configured with default annotators
+     * {@code "tokenize, ssplit, pos, lemma, depparse"}.
+     */
+    public static CoreNlpAdapter create() {
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse");
+        return new CoreNlpAdapter(new StanfordCoreNLP(props));
+    }
+
+    /**
+     * Create a CoreNlpAdapter with custom pipeline.
+     * <p>
+     * Use at your own peril.
+     */
+    public static CoreNlpAdapter create(StanfordCoreNLP pipeline) {
+        return new CoreNlpAdapter(pipeline);
+    }
+
     @Override
-    public List<TokenData> nlp(String text) throws SpacyException {
+    public final List<TokenData> nlp(String text) throws SpacyException {
         CoreDocument document = new CoreDocument(text);
         pipeline.annotate(document);
         if (document.sentences().size() == 0) {

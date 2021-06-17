@@ -1,8 +1,10 @@
 package edu.guym.spacyj.api.containers;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public final class TokenData {
+public final class TokenData implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     private final String text;
     private final String whitespaceBefore;
@@ -236,12 +238,41 @@ public final class TokenData {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TokenData tokenData = (TokenData) o;
-        return index == tokenData.index && beginOffset == tokenData.beginOffset && endOffset == tokenData.endOffset && head == tokenData.head && sentenceStart == tokenData.sentenceStart && isPunct == tokenData.isPunct && isAlpha == tokenData.isAlpha && likeNum == tokenData.likeNum && text.equals(tokenData.text) && whitespaceBefore.equals(tokenData.whitespaceBefore) && whitespaceAfter.equals(tokenData.whitespaceAfter) && lemma.equals(tokenData.lemma) && tag.equals(tokenData.tag) && pos.equals(tokenData.pos) && dependency.equals(tokenData.dependency);
+        return index == tokenData.index &&
+                beginOffset == tokenData.beginOffset &&
+                endOffset == tokenData.endOffset &&
+                head == tokenData.head &&
+                sentenceStart == tokenData.sentenceStart &&
+                isPunct == tokenData.isPunct &&
+                isAlpha == tokenData.isAlpha &&
+                likeNum == tokenData.likeNum &&
+                text.equals(tokenData.text) &&
+                whitespaceBefore.equals(tokenData.whitespaceBefore) &&
+                whitespaceAfter.equals(tokenData.whitespaceAfter) &&
+                lemma.equals(tokenData.lemma) &&
+                tag.equals(tokenData.tag) &&
+                pos.equals(tokenData.pos) &&
+                dependency.equals(tokenData.dependency);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(text, whitespaceBefore, whitespaceAfter, index, beginOffset, endOffset, lemma, tag, pos, head, dependency, sentenceStart, isPunct, isAlpha, likeNum);
+        return Objects.hash(
+                text,
+                whitespaceBefore,
+                whitespaceAfter,
+                index,
+                beginOffset,
+                endOffset,
+                lemma,
+                tag,
+                pos,
+                head,
+                dependency,
+                sentenceStart,
+                isPunct,
+                isAlpha,
+                likeNum);
     }
 
     @Override

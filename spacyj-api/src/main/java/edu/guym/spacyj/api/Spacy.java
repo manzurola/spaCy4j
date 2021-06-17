@@ -11,7 +11,7 @@ public interface Spacy {
 
     Doc nlp(String text) throws SpacyException;
 
-    static Spacy create(final SpacyAdapter client) {
+    static Spacy create(final SpacyAdapter adapter) {
         return new Spacy() {
 
             private final Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -23,7 +23,7 @@ public interface Spacy {
                 }
 
                 try {
-                    return Doc.create(client.nlp(text));
+                    return Doc.create(adapter.nlp(text));
                 } catch (Throwable e) {
                     logger.error("failed to parse text", new SpacyException(e, text));
                     return Doc.EMPTY;

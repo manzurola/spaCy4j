@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
 
 public final class PtbToUdPosMapper {
@@ -17,7 +18,7 @@ public final class PtbToUdPosMapper {
     }
 
     public static PtbToUdPosMapper create() {
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new ConcurrentSkipListMap<>();
         InputStream input = PtbToUdPosMapper.class.getClassLoader().getResourceAsStream(path);
         BufferedReader reader = new BufferedReader(new InputStreamReader(input));
         List<String> lines = reader.lines().collect(Collectors.toList());

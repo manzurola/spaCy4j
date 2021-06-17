@@ -12,22 +12,40 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Spacy Adapter for <a href="https://github.com/neelkamath/spacy-server">spaCy server</a>.
+ * <p>
+ * Creates {@link TokenData} from the result of the {@code "/pos"} endpoint.
+ */
 public class SpacyServerAdapter implements SpacyAdapter {
 
     private final URI uri;
     private final HttpClient client;
 
-    public SpacyServerAdapter() {
-        this("localhost", 8080);
-    }
-
-    public SpacyServerAdapter(String httpHost, int httpPort) {
-        this("http", httpHost, httpPort);
-    }
-
-    public SpacyServerAdapter(String httpProtocol, String httpHost, int httpPort) {
+    private SpacyServerAdapter(String httpProtocol, String httpHost, int httpPort) {
         this.uri = URI.create(String.format("%s://%s:%d/pos", httpProtocol, httpHost, httpPort));
         this.client = HttpClient.newHttpClient();
+    }
+
+    /**
+     * Create a SpacyServerAdapter with {@code http}, {@code localhost} and {@code 8080} as default params.
+     */
+    public static SpacyServerAdapter create() {
+        return new SpacyServerAdapter("http", "localhost", 8000);
+    }
+
+    /**
+     * Create a SpacyServerAdapter with default http protocol and custom {@code httpHost} and {@code httpPort}.
+     */
+    public static SpacyServerAdapter create(String httpHost, int httpPort) {
+        return new SpacyServerAdapter("http", httpHost, httpPort);
+    }
+
+    /**
+     * Create a SpacyServerAdapter with custom {@code httpProtocol}, {@code httpsHost} and {@code httpPort}.
+     */
+    public static SpacyServerAdapter create(String httpProtocol, String httpHost, int httpPort) {
+        return new SpacyServerAdapter(httpProtocol, httpHost, httpPort);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class CoreNlpAdapterTest {
 
     @BeforeAll
     void setSpacy() {
-        spacy = Spacy.create(new CoreNlpAdapter());
+        spacy = Spacy.create(CoreNlpAdapter.create());
     }
 
     @Test
@@ -141,7 +141,6 @@ public class CoreNlpAdapterTest {
     @Test
     void testEmoji() {
         Doc doc = spacy.nlp("\uD83D\uDE1C");
-        System.out.println(doc);
     }
 
     private void assertExpectedSentence(String text, List<TokenData> words) {

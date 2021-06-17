@@ -23,7 +23,7 @@ public final class SpanImpl implements Span {
         this.doc = Objects.requireNonNull(doc);
         this.start = start;
         this.end = end;
-        this.text = TokenTextWriter.getInstance().getText(doc.tokenData().subList(start, end));
+        this.text = TokenTextPrinter.getInstance().print(doc.tokenData().subList(start, end));
     }
 
     @Override
