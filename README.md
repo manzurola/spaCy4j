@@ -1,8 +1,6 @@
 # spaCyJ
-## spaCy (and more) adapter for Java
 
 Harness the simplicity and convenience of spaCy containers in Java.
-Ready-to-use adapters for [spaCy Server](https://github.com/neelkamath/spacy-server) and [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
 
 ## spacyj-api
 
@@ -14,4 +12,6 @@ The spacyj-adapters multi-module contains two adapters. An adapter produces a li
 
 ### About
 This package was originally developed as a wrapper for the powerfull [CoreNLP](https://github.com/stanfordnlp/CoreNLP) for projects relating to language learning. Later when I discovered spaCy I was impressed with the convenient and simple token container API, and so decided to bring it to Java. So now we can use CoreNLP in Java with a spaCy interface.
+
+Ready-to-use adapters for [spaCy Server](https://github.com/neelkamath/spacy-server) and [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
 
