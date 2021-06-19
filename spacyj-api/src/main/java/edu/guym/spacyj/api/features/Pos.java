@@ -50,8 +50,8 @@ public enum Pos {
                 .orElseThrow(() -> new IllegalArgumentException("Unknown pt pos tag " + tag));
     }
 
-    public static Set<PtbTag> all() {
-        return Arrays.stream(PtbTag.values()).collect(Collectors.toSet());
+    public static Set<Pos> all() {
+        return Arrays.stream(Pos.values()).collect(Collectors.toSet());
     }
 
     public final String getTag() {
