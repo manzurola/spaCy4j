@@ -1,4 +1,4 @@
-package edu.guym.spacyj.api.containers.impl;
+package edu.guym.spacyj.api.utils;
 
 import edu.guym.spacyj.api.containers.TokenData;
 

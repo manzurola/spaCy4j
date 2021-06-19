@@ -67,9 +67,9 @@ public class CoreNlpAdapterTest {
 
     @Test
     void verifyEmptySentenceOnNonBreakingSpace() {
-        String value = String.valueOf((char) 160);
-        Doc doc = spacy.nlp(value);
-        Assertions.assertEquals(Doc.create(List.of()), doc);
+        String text = String.valueOf((char) 160);
+        Doc doc = spacy.nlp(text);
+        Assertions.assertEquals(Doc.create(text, List.of()), doc);
     }
 
     @Test

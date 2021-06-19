@@ -13,8 +13,8 @@ public final class DocImpl implements Doc {
     private final String text;
     private final List<TokenData> tokenData;
 
-    public DocImpl(List<TokenData> tokenData) {
-        this.text = TokenTextPrinter.getInstance().print(tokenData);
+    public DocImpl(String text, List<TokenData> tokenData) {
+        this.text = text;
         this.tokenData = Objects.requireNonNull(tokenData);
     }
 

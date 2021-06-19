@@ -1,16 +1,13 @@
 package edu.guym.spacyj.api.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import edu.guym.spacyj.api.containers.Doc;
 import edu.guym.spacyj.api.containers.TokenData;
+import edu.guym.spacyj.api.utils.TokenTextPrinter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,6 +43,7 @@ public class SpacyJacksonModuleTest {
                 TokenData.builder().setText("it").setBefore(" ").setAfter("").setIndex(12).setBeginOffset(46).setEndOffset(48).setLemma("it").setTag("PRP").setPos("PRON").setHead(8).setDependency("obl").setIsAlpha(true).build(),
                 TokenData.builder().setText(".").setBefore("").setAfter("").setIndex(13).setBeginOffset(48).setEndOffset(49).setLemma(".").setTag(".").setPos("PUNCT").setHead(4).setDependency("punct").setIsPunct(true).build()
         );
-        return Doc.create(tokens);
+        String text = TokenTextPrinter.getInstance().print(tokens);
+        return Doc.create(text, tokens);
     }
 }

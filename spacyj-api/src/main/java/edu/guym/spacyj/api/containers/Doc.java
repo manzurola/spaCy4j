@@ -17,14 +17,10 @@ public interface Doc {
     /**
      * The empty Doc.
      */
-    Doc EMPTY = Doc.create(List.of());
-
-    static Doc create(List<TokenData> data) {
-        return new DocImpl(data);
-    }
+    Doc EMPTY = Doc.create("", List.of());
 
     static Doc create(String text, List<TokenData> tokens) {
-        return new DocImpl(tokens);
+        return new DocImpl(text, tokens);
     }
 
     /**

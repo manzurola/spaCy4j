@@ -4,13 +4,13 @@ import edu.guym.spacyj.api.containers.Doc;
 import edu.guym.spacyj.api.containers.Span;
 import edu.guym.spacyj.api.containers.Token;
 import edu.guym.spacyj.api.containers.TokenData;
+import edu.guym.spacyj.api.utils.TokenTextPrinter;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public final class SpanImpl implements Span {
 
