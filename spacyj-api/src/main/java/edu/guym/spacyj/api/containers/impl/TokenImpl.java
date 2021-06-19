@@ -4,7 +4,6 @@ import edu.guym.spacyj.api.containers.Doc;
 import edu.guym.spacyj.api.containers.Span;
 import edu.guym.spacyj.api.containers.Token;
 import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.features.Dependency;
 
 import java.util.List;
 import java.util.Objects;

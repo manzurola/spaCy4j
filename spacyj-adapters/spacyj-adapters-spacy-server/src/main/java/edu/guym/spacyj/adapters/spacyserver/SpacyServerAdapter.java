@@ -1,6 +1,9 @@
 package edu.guym.spacyj.adapters.spacyserver;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import edu.guym.spacyj.api.SpacyAdapter;
 import edu.guym.spacyj.api.containers.TokenData;
 import edu.guym.spacyj.api.exceptions.SpacyException;

@@ -1,6 +1,9 @@
 package edu.guym.spacyj.api.containers.impl;
 
-import edu.guym.spacyj.api.containers.*;
+import edu.guym.spacyj.api.containers.Doc;
+import edu.guym.spacyj.api.containers.Span;
+import edu.guym.spacyj.api.containers.Token;
+import edu.guym.spacyj.api.containers.TokenData;
 
 import java.util.ArrayList;
 import java.util.List;
