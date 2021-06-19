@@ -53,7 +53,9 @@ public final class SpanImpl implements Span {
 
     @Override
     public Optional<Token> root() {
-        return dataStream()
+        List<TokenData> data = doc.tokenData().subList(start, end + 1);
+        return data
+                .stream()
                 .filter(t -> t.head() == 0)
                 .map(t -> doc.getToken(t.index()))
                 .findFirst();
@@ -94,12 +96,6 @@ public final class SpanImpl implements Span {
                 .filter(s -> s.start() <= start() && s.end() > start())
                 .findFirst()
                 .orElse(Span.EMPTY);
-    }
-
-    private Stream<TokenData> dataStream() {
-        return IntStream
-                .range(start, end)
-                .mapToObj(doc::getTokenData);
     }
 
     @Override

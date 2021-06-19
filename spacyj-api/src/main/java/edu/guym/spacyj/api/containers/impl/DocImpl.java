@@ -1,9 +1,6 @@
 package edu.guym.spacyj.api.containers.impl;
 
-import edu.guym.spacyj.api.containers.Doc;
-import edu.guym.spacyj.api.containers.Span;
-import edu.guym.spacyj.api.containers.Token;
-import edu.guym.spacyj.api.containers.TokenData;
+import edu.guym.spacyj.api.containers.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,12 +38,6 @@ public final class DocImpl implements Doc {
     @Override
     public final List<TokenData> tokenData() {
         return tokenData;
-    }
-
-    @Override
-    public TokenData getTokenData(int i) {
-        return tokenData.get(i);
-
     }
 
     @Override

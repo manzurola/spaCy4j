@@ -23,6 +23,10 @@ public interface Doc {
         return new DocImpl(data);
     }
 
+    static Doc create(String text, List<TokenData> tokens) {
+        return new DocImpl(tokens);
+    }
+
     /**
      * A string representation of the document text.
      */
@@ -85,10 +89,4 @@ public interface Doc {
      */
     List<TokenData> tokenData();
 
-    /**
-     * Get the underlying data for a token at position {@code i}.
-     *
-     * @param i the index of the token
-     */
-    TokenData getTokenData(int i);
 }
