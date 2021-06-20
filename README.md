@@ -4,14 +4,6 @@ Harness the simplicity and convenience of spaCy containers in Java.
 
 ![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
 
-
-## Installation
-
-This library is currenlty available only via Github Packages.
-You will need to [configure maven to work with Github's repo](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry). This includes changing your settings.xml file and generating a Private Access Token in github. Make sure to enable snapshots.
-Once configured, add this to your `pom.xml`:
-// TODO
-
 ## Basic Usage
 
 The spaCyJ library is made of two core modules; API and Adapter. The API consists of container interfaces, mimicking most of the functionality of Doc, Token etc as in spaCy. The adapter module provides the underlying NLP engine and acts as a factory for Doc objects.
