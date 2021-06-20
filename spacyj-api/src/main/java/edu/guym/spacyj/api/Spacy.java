@@ -25,8 +25,8 @@ public interface Spacy {
                 try {
                     return Doc.create(text, adapter.nlp(text));
                 } catch (Throwable e) {
-                    logger.error("failed to parse text", new SpacyException(e, text));
-                    return Doc.EMPTY;
+                    logger.error("failed to parse text", e);
+                    throw new SpacyException(e, text);
                 }
             }
         };
