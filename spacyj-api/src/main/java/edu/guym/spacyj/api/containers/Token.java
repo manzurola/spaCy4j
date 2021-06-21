@@ -1,137 +1,227 @@
 package edu.guym.spacyj.api.containers;
 
-import edu.guym.spacyj.api.containers.impl.TokenImpl;
-
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * An individual token — i.e. a word, punctuation symbol, whitespace, etc.
  */
-public interface Token {
+public final class Token {
 
-    static Token create(Doc doc, int index) {
-        return new TokenImpl(doc, index);
+    private final Doc doc;
+    private final int index;
+
+    public Token(Doc doc, int index) {
+        this.doc = doc;
+        this.index = index;
+    }
+
+    public static Token create(Doc doc, int index) {
+        return new Token(doc, index);
     }
 
     /**
      * The parent document.
      */
-    Doc doc();
+    public final Doc doc() {
+        return doc;
+    }
 
     /**
      * The parent sentence.
      */
-    Span sentence();
+    public final Span sentence() {
+        return doc.sentences()
+                .stream()
+                .filter(s -> {
+                    int firstTokenIndex = s.getToken(0).index();
+                    int lastTokenIndex = s.size() + firstTokenIndex;
+                    return index >= firstTokenIndex && index < lastTokenIndex;
+                })
+                .findFirst()
+                .orElse(Span.EMPTY);
+    }
 
     /**
      * Verbatim text content.
      */
-    String text();
+    public final String text() {
+        return data().text();
+    }
 
     /**
      * The index of the token within the parent document.
      */
-    int index();
+    public final int index() {
+        return data().index();
+    }
 
     /**
      * The character offset for the start of the document.
      */
-    int charStart();
+    public final int charStart() {
+        return data().beginOffset();
+    }
 
     /**
      * The character offset for the end of the document.
      */
-    int charEnd();
+    public final int charEnd() {
+        return data().endOffset();
+    }
 
     /**
      * The number of unicode characters in the token, i.e. token.text().length().
      */
-    int length();
+    public int length() {
+        return text().length();
+    }
 
     /**
      * Leading whitespace characters if present, empty string otherwise.
      */
-    String spaceBefore();
+    public final String spaceBefore() {
+        return data().whitespaceAfter();
+    }
 
     /**
      * Trailing whitespace characters if present, empty string otherwise.
      */
-    String spaceAfter();
+    public final String spaceAfter() {
+        return data().whitespaceAfter();
+    }
 
     /**
      * Is this token the start of its sentence?
      */
-    boolean isSentenceStart();
+    public final boolean isSentenceStart() {
+        return data().isSentenceStart();
+    }
 
     /**
      * Fine-grained part-of-speech. Usually the PTB part-of-speech.
      */
-    String tag();
+    public final String tag() {
+        return data().tag();
+    }
 
     /**
      * Coarse-grained part-of-speech from the <a href="https://universaldependencies.org/docs/u/pos/">Universal POS tag set</a>.
      */
-    String pos();
+    public final String pos() {
+        return data().pos();
+    }
 
     /**
      * Base form of the token, with no inflectional suffixes.
      */
-    String lemma();
+    public final String lemma() {
+        return data().lemma();
+    }
 
     /**
      * Syntactic dependency relation.
      */
-    String dependency();
+    public final String dependency() {
+        return data().dependency();
+    }
 
     /**
      * Lowercase form of the token.
      */
-    String lower();
+    public final String lower() {
+        return text().toLowerCase();
+    }
 
     /**
      * The subsequent token in the parent doc.
      */
-    Optional<Token> next();
+    public final Optional<Token> next() {
+        int next = index() + 1;
+        if (next < doc.size()) {
+            return Optional.of(doc.getToken(next));
+        }
+        return Optional.empty();
+    }
 
     /**
      * The syntactic parent, or “governor”, of this token.
      */
-    Optional<Token> head();
+    public final Optional<Token> head() {
+        return Optional.ofNullable(doc.getToken(data().head()));
+    }
 
     /**
      * A sequence of the token’s immediate syntactic children.
      */
-    List<Token> children();
+    public final List<Token> children() {
+        return doc.tokenData()
+                .stream()
+                .filter(t -> t.head() == data().index())
+                .map(TokenData::index)
+                .map(doc::getToken)
+                .collect(Collectors.toList());
+    }
 
     /**
      * Does the token consist of only alphabetic characters?
      */
-    boolean isAlpha();
+    public final boolean isAlpha() {
+        return data().isAlpha();
+    }
 
     /**
      * Is the token punctuation?
      */
-    boolean isPunct();
+    public final boolean isPunct() {
+        return data().isPunct();
+    }
 
     /**
      * Does the token represent a number? e.g. “10.9”, “10”, “ten”, etc.
      */
-    boolean likeNum();
+    public final boolean likeNum() {
+        return data().likeNum();
+    }
 
     /**
      * Returns an Optional after applying predicate to Token.
      */
-    default Optional<Token> filter(Predicate<Token> predicate) {
+    public final Optional<Token> filter(Predicate<Token> predicate) {
         return Optional.of(this).filter(predicate);
     }
 
     /**
      * Returns the result of applying predicate to Token.
      */
-    default boolean matches(Predicate<Token> predicate) {
+    public final boolean matches(Predicate<Token> predicate) {
         return this.filter(predicate).isPresent();
     }
 
+    private TokenData data() {
+        return doc.tokenData().get(index);
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Token token = (Token) o;
+        return data().equals(token.data());
+    }
+
+    @Override
+    public final int hashCode() {
+        return Objects.hash(data());
+    }
+
+    @Override
+    public final String toString() {
+        return "TokenImpl{" +
+                "data=" + data() +
+                '}';
+    }
 }

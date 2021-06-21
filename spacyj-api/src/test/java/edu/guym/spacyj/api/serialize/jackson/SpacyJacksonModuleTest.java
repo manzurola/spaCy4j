@@ -1,4 +1,4 @@
-package edu.guym.spacyj.api.json;
+package edu.guym.spacyj.api.serialize.jackson;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.guym.spacyj.api.containers.Doc;

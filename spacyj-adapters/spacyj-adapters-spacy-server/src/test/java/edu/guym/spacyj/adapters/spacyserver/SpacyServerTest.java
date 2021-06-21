@@ -3,7 +3,7 @@ package edu.guym.spacyj.adapters.spacyserver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.guym.spacyj.api.Spacy;
 import edu.guym.spacyj.api.containers.Doc;
-import edu.guym.spacyj.api.json.SpacyJacksonModule;
+import edu.guym.spacyj.api.serialize.jackson.SpacyJacksonModule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
