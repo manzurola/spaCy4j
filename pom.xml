@@ -24,6 +24,14 @@
         <logback.version>1.1.7</logback.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub spacy-java</name>
+            <url>https://maven.pkg.github.com/manzurola/spacy-java</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>ch.qos.logback</groupId>
