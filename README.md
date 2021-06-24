@@ -1,6 +1,6 @@
 # spaCyJ
 
-Harness the simplicity and convenience of spaCy containers in Java.
+spaCy adapters for the JVM.
 
 ![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
 
