@@ -36,13 +36,13 @@ public final class Token {
     public final Span sentence() {
         return doc.sentences()
                 .stream()
-                .filter(s -> {
-                    int firstTokenIndex = s.getToken(0).index();
-                    int lastTokenIndex = s.size() + firstTokenIndex;
+                .filter(sentence -> {
+                    int firstTokenIndex = sentence.getToken(0).index();
+                    int lastTokenIndex = firstTokenIndex + sentence.size();
                     return index >= firstTokenIndex && index < lastTokenIndex;
                 })
                 .findFirst()
-                .orElse(Span.EMPTY);
+                .orElseThrow(() -> new IllegalStateException("could not find parent sentence"));
     }
 
     /**

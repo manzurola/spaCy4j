@@ -55,7 +55,7 @@ public class CoreNlpAdapterTest {
     @Test
     public void verifyEmptyDoc() {
         Doc doc = spacy.nlp("");
-        assertEquals(Doc.EMPTY, doc);
+        assertEquals(Doc.create("", List.of()), doc);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class CoreNlpAdapterTest {
     @Test
     void verifyEmojiSucceeds() {
         Doc doc = spacy.nlp("\uD83D\uDE1C");
-        Assertions.assertNotEquals(Span.EMPTY, doc);
+        Assertions.assertNotEquals(Doc.create("", List.of()), doc);
     }
 
     @Test
@@ -116,7 +116,7 @@ public class CoreNlpAdapterTest {
     @Test
     public void emptyTextEmptySentence() {
         String text = "";
-        Doc expected = Doc.EMPTY;
+        Doc expected = Doc.create("", List.of());
         Doc actual = spacy.nlp(text);
         assertEquals(expected, actual);
     }

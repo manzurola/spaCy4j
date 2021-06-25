@@ -1,10 +1,12 @@
 package edu.guym.spacyj.api;
 
 import edu.guym.spacyj.api.containers.Doc;
+import edu.guym.spacyj.api.containers.TokenData;
 import edu.guym.spacyj.api.exceptions.SpacyException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Objects;
 
 public final class Spacy {
@@ -21,12 +23,10 @@ public final class Spacy {
     }
 
     public final Doc nlp(String text) throws SpacyException {
-        if (Objects.isNull(text) || text.isBlank()) {
-            return Doc.EMPTY;
-        }
-
+        Objects.requireNonNull(text);
         try {
-            return Doc.create(text, adapter.nlp(text));
+            List<TokenData> data = adapter.nlp(text);
+            return Doc.create(text, data);
         } catch (Throwable e) {
             logger.error("failed to parse text", e);
             throw new SpacyException(e, text);

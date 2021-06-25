@@ -13,8 +13,6 @@ import java.util.stream.IntStream;
  */
 public final class Span {
 
-    public static Span EMPTY = new Span(Doc.EMPTY, 0, 0);
-
     private final Doc doc;
     private final int start;
     private final int end;
@@ -105,7 +103,7 @@ public final class Span {
         return doc.sentences().stream()
                 .filter(s -> s.start() <= start() && s.end() > start())
                 .findFirst()
-                .orElse(Span.EMPTY);
+                .orElseThrow(() -> new IllegalStateException("Could not find the sentence this span is a part of"));
     }
 
     /**

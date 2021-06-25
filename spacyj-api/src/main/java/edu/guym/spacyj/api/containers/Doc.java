@@ -15,11 +15,6 @@ import java.util.stream.Stream;
  */
 public final class Doc {
 
-    /**
-     * The empty Doc.
-     */
-    public static Doc EMPTY = Doc.create("", List.of());
-
     private final String text;
     private final List<TokenData> tokenData;
 
