@@ -181,6 +181,13 @@ public final class Token {
     }
 
     /**
+     * Does the token consist of whitespace characters? Equivalent to {@code text().isBlank()}
+     */
+    public final boolean isWhitespace() {
+        return text().isBlank();
+    }
+
+    /**
      * Does the token represent a number? e.g. “10.9”, “10”, “ten”, etc.
      */
     public final boolean likeNum() {
