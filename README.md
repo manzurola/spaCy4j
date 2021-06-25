@@ -19,7 +19,7 @@ Include the following dependency in you pom.xml (available via github packages o
 
 ```
 <dependency>
-  <groupId>edu.guym.spacyj</groupId>
+  <groupId>edu.guym</groupId>
   <artifactId>spacyj-adapters-corenlp</artifactId>
   <version>1.0-SNAPSHOT</version>
 </dependency>
@@ -50,7 +50,7 @@ Include the following dependency in you pom.xml (available via github packages o
 
 ```
 <dependency>
-  <groupId>edu.guym.spacyj</groupId>
+  <groupId>edu.guym</groupId>
   <artifactId>spacyj-adapters-spacy-server</artifactId>
   <version>1.0-SNAPSHOT</version>
 </dependency>

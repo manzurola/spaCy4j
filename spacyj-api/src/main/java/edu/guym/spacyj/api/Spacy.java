@@ -7,28 +7,29 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
-public interface Spacy {
+public final class Spacy {
 
-    Doc nlp(String text) throws SpacyException;
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final SpacyAdapter adapter;
 
-    static Spacy create(final SpacyAdapter adapter) {
-        return new Spacy() {
+    private Spacy(SpacyAdapter adapter) {
+        this.adapter = adapter;
+    }
 
-            private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    public static Spacy create(SpacyAdapter adapter) {
+        return new Spacy(adapter);
+    }
 
-            @Override
-            public Doc nlp(String text) throws SpacyException {
-                if (Objects.isNull(text) || text.isBlank()) {
-                    return Doc.EMPTY;
-                }
+    public final Doc nlp(String text) throws SpacyException {
+        if (Objects.isNull(text) || text.isBlank()) {
+            return Doc.EMPTY;
+        }
 
-                try {
-                    return Doc.create(text, adapter.nlp(text));
-                } catch (Throwable e) {
-                    logger.error("failed to parse text", e);
-                    throw new SpacyException(e, text);
-                }
-            }
-        };
+        try {
+            return Doc.create(text, adapter.nlp(text));
+        } catch (Throwable e) {
+            logger.error("failed to parse text", e);
+            throw new SpacyException(e, text);
+        }
     }
 }
