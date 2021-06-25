@@ -25,7 +25,6 @@ public final class TokenData implements Serializable {
     private final boolean sentenceStart;
 
     private final boolean isPunct;
-    private final boolean isAlpha;
     private final boolean likeNum;
 
     @JsonCreator
@@ -42,7 +41,6 @@ public final class TokenData implements Serializable {
                       @JsonProperty("dependency") String dependency,
                       @JsonProperty("sentenceStart") boolean sentenceStart,
                       @JsonProperty("isPunct") boolean isPunct,
-                      @JsonProperty("isAlpha") boolean isAlpha,
                       @JsonProperty("likeNum") boolean likeNum) {
         this.text = text;
         this.whitespaceBefore = whitespaceBefore;
@@ -57,7 +55,6 @@ public final class TokenData implements Serializable {
         this.head = head;
         this.dependency = dependency;
         this.isPunct = isPunct;
-        this.isAlpha = isAlpha;
         this.likeNum = likeNum;
     }
 
@@ -117,10 +114,6 @@ public final class TokenData implements Serializable {
         return isPunct;
     }
 
-    public final boolean isAlpha() {
-        return isAlpha;
-    }
-
     public final boolean likeNum() {
         return likeNum;
     }
@@ -139,7 +132,6 @@ public final class TokenData implements Serializable {
         private String dependency = "";
         private boolean sentenceStart = false;
         private boolean isPunct = false;
-        private boolean isAlpha = false;
         private boolean likeNum = false;
 
         public final Builder setText(String text) {
@@ -207,11 +199,6 @@ public final class TokenData implements Serializable {
             return this;
         }
 
-        public final Builder setIsAlpha(boolean isAlpha) {
-            this.isAlpha = isAlpha;
-            return this;
-        }
-
         public final Builder setLikeNum(boolean likeNum) {
             this.likeNum = likeNum;
             return this;
@@ -232,7 +219,6 @@ public final class TokenData implements Serializable {
                     dependency,
                     sentenceStart,
                     isPunct,
-                    isAlpha,
                     likeNum);
         }
     }
@@ -248,7 +234,6 @@ public final class TokenData implements Serializable {
                 head == tokenData.head &&
                 sentenceStart == tokenData.sentenceStart &&
                 isPunct == tokenData.isPunct &&
-                isAlpha == tokenData.isAlpha &&
                 likeNum == tokenData.likeNum &&
                 text.equals(tokenData.text) &&
                 whitespaceBefore.equals(tokenData.whitespaceBefore) &&
@@ -275,7 +260,6 @@ public final class TokenData implements Serializable {
                 dependency,
                 sentenceStart,
                 isPunct,
-                isAlpha,
                 likeNum);
     }
 
@@ -295,7 +279,6 @@ public final class TokenData implements Serializable {
                 ", dependency='" + dependency + '\'' +
                 ", sentenceStart=" + sentenceStart +
                 ", isPunct=" + isPunct +
-                ", isAlpha=" + isAlpha +
                 ", likeNum=" + likeNum +
                 '}';
     }

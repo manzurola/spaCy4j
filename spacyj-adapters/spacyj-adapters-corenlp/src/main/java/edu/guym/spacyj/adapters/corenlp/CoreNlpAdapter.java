@@ -91,7 +91,6 @@ public final class CoreNlpAdapter implements SpacyAdapter {
                         .setHead(head)
                         .setDependency(dep)
                         .setSentenceStart(isSentenceStart)
-                        .setIsAlpha(text.chars().allMatch(Character::isLetter))
                         .setIsPunct(Pos.PUNCT.matches(pos))
                         .setLikeNum(Pos.NUM.matches(pos))
                         .build());

@@ -170,7 +170,7 @@ public final class Token {
      * Does the token consist of only alphabetic characters?
      */
     public final boolean isAlpha() {
-        return data().isAlpha();
+        return text().chars().allMatch(Character::isLetter);
     }
 
     /**
