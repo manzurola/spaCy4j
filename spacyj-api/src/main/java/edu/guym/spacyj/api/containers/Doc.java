@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * The Doc object holds a list of {@link TokenData} objects. {@link Span} and {@link Token} are views of this array.
  * <p>
  * The API is greatly inspired by <a href="https://spacy.io/api/doc">Spacy</a>, but exposes less functionality.
- * Even the docs are mostly copy-pasted from the official Spacy docs.
+ * Even the docs are mostly copy-pasted from the official spaCy docs.
  */
 public final class Doc {
 
