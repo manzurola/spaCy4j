@@ -1,9 +1,12 @@
 package edu.guym.spacyj.api.containers;
 
+import edu.guym.spacyj.api.utils.TextUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
@@ -25,6 +28,10 @@ public final class Doc {
 
     public static Doc create(String text, List<TokenData> tokens) {
         return new Doc(text, tokens);
+    }
+
+    public static Doc create(List<TokenData> tokens) {
+        return new Doc(TextUtils.writeTextWithoutWs(tokens), tokens);
     }
 
     /**
@@ -59,19 +66,23 @@ public final class Doc {
      * Get all spans representing the sentences in document.
      */
     public final List<Span> sentences() {
-        List<Integer> sentenceStartLocations = tokenData.stream()
-                .filter(TokenData::isSentenceStart)
-                .map(TokenData::index)
-                .collect(Collectors.toList());
-        List<Span> sentences = new ArrayList<>();
+        int[] indexes =
+                Stream.of(
+                        IntStream.range(0, tokenData.size())
+                                .filter(i -> tokenData.get(i).isSentenceStart()),
+                        IntStream.of(tokenData.size())
+                ).flatMapToInt(s -> s).toArray();
 
-        for (int start = 0; start < sentenceStartLocations.size(); start++) {
-            int end = start == sentenceStartLocations.size() - 1 ?
-                    tokenData.size() :
-                    sentenceStartLocations.get(start + 1);
-            sentences.add(spanOf(start, end));
-        }
-        return sentences;
+        return IntStream
+                .range(0, indexes.length - 1)
+                .mapToObj(i -> tokenData.subList(indexes[i], indexes[i + 1]))
+                .filter(l -> !l.isEmpty())
+                .map(sent -> {
+                    int start = sent.get(0).index();
+                    int end = sent.get(sent.size() - 1).index() + 1;
+                    return spanOf(start, end);
+                })
+                .collect(Collectors.toList());
     }
 
     /**

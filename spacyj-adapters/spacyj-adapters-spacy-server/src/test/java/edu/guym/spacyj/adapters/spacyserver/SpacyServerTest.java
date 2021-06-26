@@ -35,11 +35,12 @@ public class SpacyServerTest {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new SpacyJacksonModule());
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("spacy-server-response.json");
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("doc.json");
         Doc expected = mapper.readValue(inputStream, Doc.class);
 
-        Doc actual = spacy.nlp("Hello world. How are you today?");
+        Doc actual = spacy.nlp("My head feels like a frisbee. Twice it's normal size. It feels like a football.");
 
         Assertions.assertEquals(expected, actual);
     }
+
 }

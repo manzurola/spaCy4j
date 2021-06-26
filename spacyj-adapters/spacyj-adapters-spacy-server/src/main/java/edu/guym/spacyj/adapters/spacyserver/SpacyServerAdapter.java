@@ -77,7 +77,7 @@ public class SpacyServerAdapter implements SpacyAdapter {
 
         JsonArray data = json.getAsJsonObject().get("data").getAsJsonArray();
         for (JsonElement sentence : data) {
-            String text = sentence.getAsJsonObject().get("text").getAsString();
+            String sentenceText = sentence.getAsJsonObject().get("text").getAsString();
             JsonArray tags = sentence.getAsJsonObject().get("tags").getAsJsonArray();
             boolean isSentStart = true;
             for (JsonElement spacyToken : tags) {

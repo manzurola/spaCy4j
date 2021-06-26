@@ -1,8 +1,5 @@
 package edu.guym.spacyj.api.containers;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -27,21 +24,20 @@ public final class TokenData implements Serializable {
     private final boolean isPunct;
     private final boolean likeNum;
 
-    @JsonCreator
-    private TokenData(@JsonProperty("text") String text,
-                      @JsonProperty("whitespaceBefore") String whitespaceBefore,
-                      @JsonProperty("whitespaceAfter") String whitespaceAfter,
-                      @JsonProperty("index") int index,
-                      @JsonProperty("beginOffset") int beginOffset,
-                      @JsonProperty("endOffset") int endOffset,
-                      @JsonProperty("lemma") String lemma,
-                      @JsonProperty("tag") String tag,
-                      @JsonProperty("pos") String pos,
-                      @JsonProperty("head") int head,
-                      @JsonProperty("dependency") String dependency,
-                      @JsonProperty("sentenceStart") boolean sentenceStart,
-                      @JsonProperty("isPunct") boolean isPunct,
-                      @JsonProperty("likeNum") boolean likeNum) {
+    private TokenData(String text,
+                      String whitespaceBefore,
+                      String whitespaceAfter,
+                      int index,
+                      int beginOffset,
+                      int endOffset,
+                      String lemma,
+                      String tag,
+                      String pos,
+                      int head,
+                      String dependency,
+                      boolean sentenceStart,
+                      boolean isPunct,
+                      boolean likeNum) {
         this.text = text;
         this.whitespaceBefore = whitespaceBefore;
         this.whitespaceAfter = whitespaceAfter;

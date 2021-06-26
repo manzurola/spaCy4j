@@ -1,9 +1,9 @@
 package edu.guym.spacyj.api.serialize.jackson;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.guym.spacyj.api.containers.Doc;
 import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.utils.TokenTextPrinter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,19 @@ public class SpacyJacksonModuleTest {
                 TokenData.builder().setText("it").setBefore(" ").setAfter("").setIndex(12).setBeginOffset(46).setEndOffset(48).setLemma("it").setTag("PRP").setPos("PRON").setHead(8).setDependency("obl").build(),
                 TokenData.builder().setText(".").setBefore("").setAfter("").setIndex(13).setBeginOffset(48).setEndOffset(49).setLemma(".").setTag(".").setPos("PUNCT").setHead(4).setDependency("punct").setIsPunct(true).build()
         );
-        String text = TokenTextPrinter.getInstance().print(tokens);
-        return Doc.create(text, tokens);
+        return Doc.create(tokens);
+    }
+
+    @Test
+    void testJson2() throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new SpacyJacksonModule());
+
+        String text = "My head feels like a frisbee. Twice it's normal size. It feels like a football.";
+
+
+//        String json = mapper.writeValueAsString(expected);
+//        Doc actual = mapper.readValue(json, Doc.class);
+//        Assertions.assertEquals(expected, actual);
     }
 }

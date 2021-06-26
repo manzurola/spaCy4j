@@ -1,6 +1,6 @@
 package edu.guym.spacyj.api.containers;
 
-import edu.guym.spacyj.api.utils.TokenTextPrinter;
+import edu.guym.spacyj.api.utils.TextUtils;
 
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +22,7 @@ public final class Span {
         this.doc = Objects.requireNonNull(doc);
         this.start = start;
         this.end = end;
-        this.text = TokenTextPrinter.getInstance().print(doc.tokenData().subList(start, end));
+        this.text = TextUtils.writeTextWithoutWs(doc.tokenData().subList(start, end));
     }
 
     public static Span create(Doc doc, int start, int end) {
@@ -45,6 +45,7 @@ public final class Span {
 
     /**
      * Returns true if the span no has tokens, false otherwise.
+     *
      * @return
      */
     public final boolean isEmpty() {
@@ -107,14 +108,14 @@ public final class Span {
     }
 
     /**
-     * The token offset for the start of the span.
+     * The token offset for the start of the span (inclusive).
      */
     public final int start() {
         return start;
     }
 
     /**
-     * The token offset for the end of the span.
+     * The token offset for the end of the span (exclusive).
      */
     public final int end() {
         return end;
@@ -125,12 +126,19 @@ public final class Span {
      * If multiple tokens are equally high in the tree, the first token is taken.
      */
     public final Optional<Token> root() {
-        List<TokenData> data = doc.tokenData().subList(start, end + 1);
+        List<TokenData> data = doc.tokenData().subList(start, end);
         return data
                 .stream()
                 .filter(t -> t.head() == 0)
                 .map(t -> doc.getToken(t.index()))
                 .findFirst();
+    }
+
+    /**
+     * Get the underlying token data for this span.
+     */
+    public final List<TokenData> tokenData() {
+        return doc().tokenData().subList(start, end);
     }
 
     @Override

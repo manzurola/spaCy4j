@@ -4,22 +4,16 @@ import edu.guym.spacyj.api.containers.TokenData;
 
 import java.util.List;
 
-public final class TokenTextPrinter {
+public class TextUtils {
 
-    enum Singleton {
-        INSTANCE(new TokenTextPrinter());
-        final TokenTextPrinter value;
-
-        Singleton(TokenTextPrinter value) {
-            this.value = value;
-        }
+    private TextUtils() {
     }
 
-    public static TokenTextPrinter getInstance() {
-        return Singleton.INSTANCE.value;
+    public static String writeTextWithoutWs(List<TokenData> tokens) {
+       return writeTextWithWs(tokens).trim();
     }
 
-    public final String print(List<TokenData> tokens) {
+    public static String writeTextWithWs(List<TokenData> tokens) {
         if (tokens.isEmpty()) {
             return "";
         }
