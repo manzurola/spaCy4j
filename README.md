@@ -4,42 +4,11 @@ spaCy adapters for the JVM.
 
 ![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
 
-## Basic Usage
+## About
 
-The spaCyJ library is made of two core modules; API and Adapter. The API consists of container interfaces, mimicking most of the functionality of Doc, Token etc as in spaCy. The adapter module provides the underlying NLP engine and acts as a factory for Doc objects.
+This library consists of two core modules; API and Adapter. The API module defines the token container classes, mimicking most of the functionality of Doc, Token etc from spaCy. The adapter module contains implemetations of integrations with NLP engines. There are currently two available adapters: [spaCy Server](https://github.com/neelkamath/spacy-server) and [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
 
-There are currently two adapters we can use: [spaCy Server](https://github.com/neelkamath/spacy-server) and [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
-
-The spacy-server adapter requires a running docker container as described in the link (very easy to set up). The CoreNLP adapter runs in memory, acting as a translation layer between CoreNLP document and Doc.
-
-### CoreNLP Adapter
-
-This adapter loads and intergrates with [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
-Include the following dependency in you pom.xml (available via github packages only):
-
-```
-<dependency>
-  <groupId>edu.guym</groupId>
-  <artifactId>spacyj-adapters-corenlp</artifactId>
-  <version>1.0-SNAPSHOT</version>
-</dependency>
-```
-
-The adapter dependency always includes the API module.
-
-Now create a new Spacy with the relevant adapter as argument, and parse a document.
-
-```java
-Spacy spacy = Spacy.create(CoreNlpAdapter.create();
-
-Doc doc = spacy.nlp("My head feels like a frisbee, twice its normal size.");
-
-// inspect tokens
-for (Token token : doc.tokens()) {
-    System.out.printf("Token: %s, Tag: %s, Pos: %s, Dependency: %s%n", 
-            token.text(), token.tag(), token.pos(), token.dependency());
-}
-```
+## Usage
 
 ### spaCy Server Adapter
 
@@ -57,7 +26,7 @@ Include the following dependency in you pom.xml (available via github packages o
 ```
 
 
-Now create a new Spacy with the relevant adapter as argument, and parse a document.
+Create a new Spacy with the relevant adapter as argument, and parse a document.
 
 ```java
 Spacy spacy = Spacy.create(SpacyServerAdapter.create("localhost", 8080));
@@ -71,3 +40,26 @@ for (Token token : doc.tokens()) {
 }
 ```
 
+### CoreNLP Adapter
+
+This adapter loads and intergrates with [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
+Include the following dependency in you pom.xml (available via github packages only):
+
+```
+<dependency>
+  <groupId>edu.guym</groupId>
+  <artifactId>spacyj-adapters-corenlp</artifactId>
+  <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+Create a new Spacy with a new CoreNlpAdapter.
+
+```java
+Spacy spacy = Spacy.create(CoreNlpAdapter.create();
+
+// same as above example
+```
+
+## Contributions
+
+[Contributions](https://github.com/manzurola/aligner/blob/a39d2719394fa258d3193e8258231950a3647920/CONTRIBUTING.md) are welcome.
