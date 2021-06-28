@@ -1,8 +1,8 @@
 package edu.guym.spacyj.adapters.corenlp;
 
-import edu.guym.spacyj.api.SpacyAdapter;
+import edu.guym.spacyj.api.SpaCyAdapter;
 import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.exceptions.SpacyException;
+import edu.guym.spacyj.api.exceptions.SpaCyException;
 import edu.guym.spacyj.api.features.Pos;
 import edu.guym.spacyj.api.utils.PtbToUdPosMapper;
 import edu.stanford.nlp.ling.CoreLabel;
@@ -17,7 +17,7 @@ import java.util.*;
  * Stanford CoreNLP Java client adapter. Loads in memory.
  * Adapts the corenlp tokens as if they were spaCy's: Index starts at 0, supports likeNum, isPunct etc.
  */
-public final class CoreNlpAdapter implements SpacyAdapter {
+public final class CoreNlpAdapter implements SpaCyAdapter {
 
     private final StanfordCoreNLP pipeline;
     private final PtbToUdPosMapper udPosMapper;
@@ -47,7 +47,7 @@ public final class CoreNlpAdapter implements SpacyAdapter {
     }
 
     @Override
-    public final List<TokenData> nlp(String text) throws SpacyException {
+    public final List<TokenData> nlp(String text) throws SpaCyException {
         CoreDocument document = new CoreDocument(text);
         pipeline.annotate(document);
         if (document.sentences().size() == 0) {

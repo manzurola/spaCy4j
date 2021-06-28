@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class SpacyJacksonModuleTest {
+public class SpaCyJacksonModuleTest {
 
     @Test
     void testJson() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new SpacyJacksonModule());
+        mapper.registerModule(new SpaCyJacksonModule());
 
         Doc expected = testDoc();
         String json = mapper.writeValueAsString(expected);
@@ -49,7 +49,7 @@ public class SpacyJacksonModuleTest {
     @Test
     void testJson2() throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new SpacyJacksonModule());
+        mapper.registerModule(new SpaCyJacksonModule());
 
         String text = "My head feels like a frisbee. Twice it's normal size. It feels like a football.";
 

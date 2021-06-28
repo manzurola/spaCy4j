@@ -1,15 +1,15 @@
 package edu.guym.spacyj.api.exceptions;
 
-public class SpacyException extends RuntimeException {
+public class SpaCyException extends RuntimeException {
 
     private final String failedText;
 
-    public SpacyException(String failedText) {
+    public SpaCyException(String failedText) {
         super(String.format("Failed to parse text [%s]", failedText));
         this.failedText = failedText;
     }
 
-    public SpacyException(Throwable cause, String failedText) {
+    public SpaCyException(Throwable cause, String failedText) {
         super(String.format("Failed to parse text [%s]. Reason: [%s]", failedText, cause.getMessage()));
         this.failedText = failedText;
     }

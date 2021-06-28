@@ -4,9 +4,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import edu.guym.spacyj.api.SpacyAdapter;
+import edu.guym.spacyj.api.SpaCyAdapter;
 import edu.guym.spacyj.api.containers.TokenData;
-import edu.guym.spacyj.api.exceptions.SpacyException;
+import edu.guym.spacyj.api.exceptions.SpaCyException;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -20,12 +20,12 @@ import java.util.List;
  * <p>
  * Creates {@link TokenData} from the result of the {@code "/pos"} endpoint.
  */
-public class SpacyServerAdapter implements SpacyAdapter {
+public class SpaCyServerAdapter implements SpaCyAdapter {
 
     private final URI uri;
     private final HttpClient client;
 
-    private SpacyServerAdapter(String httpProtocol, String httpHost, int httpPort) {
+    private SpaCyServerAdapter(String httpProtocol, String httpHost, int httpPort) {
         this.uri = URI.create(String.format("%s://%s:%d/pos", httpProtocol, httpHost, httpPort));
         this.client = HttpClient.newHttpClient();
     }
@@ -33,26 +33,26 @@ public class SpacyServerAdapter implements SpacyAdapter {
     /**
      * Create a SpacyServerAdapter with {@code http}, {@code localhost} and {@code 8080} as default params.
      */
-    public static SpacyServerAdapter create() {
-        return new SpacyServerAdapter("http", "localhost", 8000);
+    public static SpaCyServerAdapter create() {
+        return new SpaCyServerAdapter("http", "localhost", 8000);
     }
 
     /**
      * Create a SpacyServerAdapter with default http protocol and custom {@code httpHost} and {@code httpPort}.
      */
-    public static SpacyServerAdapter create(String httpHost, int httpPort) {
-        return new SpacyServerAdapter("http", httpHost, httpPort);
+    public static SpaCyServerAdapter create(String httpHost, int httpPort) {
+        return new SpaCyServerAdapter("http", httpHost, httpPort);
     }
 
     /**
      * Create a SpacyServerAdapter with custom {@code httpProtocol}, {@code httpsHost} and {@code httpPort}.
      */
-    public static SpacyServerAdapter create(String httpProtocol, String httpHost, int httpPort) {
-        return new SpacyServerAdapter(httpProtocol, httpHost, httpPort);
+    public static SpaCyServerAdapter create(String httpProtocol, String httpHost, int httpPort) {
+        return new SpaCyServerAdapter(httpProtocol, httpHost, httpPort);
     }
 
     @Override
-    public List<TokenData> nlp(String text) throws SpacyException {
+    public List<TokenData> nlp(String text) throws SpaCyException {
         var request = HttpRequest.newBuilder(uri)
                 .header("accept", "application/json")
                 .version(HttpClient.Version.HTTP_1_1)

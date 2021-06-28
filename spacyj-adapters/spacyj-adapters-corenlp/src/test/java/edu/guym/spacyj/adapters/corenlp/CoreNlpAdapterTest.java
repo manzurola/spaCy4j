@@ -1,9 +1,9 @@
 package edu.guym.spacyj.adapters.corenlp;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.guym.spacyj.api.Spacy;
+import edu.guym.spacyj.api.SpaCy;
 import edu.guym.spacyj.api.containers.Doc;
-import edu.guym.spacyj.api.serialize.jackson.SpacyJacksonModule;
+import edu.guym.spacyj.api.serialize.jackson.SpaCyJacksonModule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -19,18 +19,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class CoreNlpAdapterTest {
 
-    private Spacy spacy;
+    private SpaCy spacy;
 
     @BeforeAll
     void setup() {
-        spacy = Spacy.create(CoreNlpAdapter.create());
+        spacy = SpaCy.create(CoreNlpAdapter.create());
     }
 
     @Test
     public void verifyCoreNlpResponse() throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new SpacyJacksonModule());
+        mapper.registerModule(new SpaCyJacksonModule());
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("doc.json");
         Doc expected = mapper.readValue(inputStream, Doc.class);
 

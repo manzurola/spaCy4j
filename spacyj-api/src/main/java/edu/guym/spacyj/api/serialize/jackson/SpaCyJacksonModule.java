@@ -8,9 +8,9 @@ import edu.guym.spacyj.api.containers.Doc;
 
 import static com.fasterxml.jackson.annotation.PropertyAccessor.*;
 
-public class SpacyJacksonModule extends SimpleModule {
+public class SpaCyJacksonModule extends SimpleModule {
 
-    public SpacyJacksonModule() {
+    public SpaCyJacksonModule() {
         ObjectMapper mapper = new ObjectMapper()
                 .setVisibility(ALL, JsonAutoDetect.Visibility.NONE)
                 .setVisibility(CREATOR, JsonAutoDetect.Visibility.ANY)
