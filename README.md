@@ -41,7 +41,7 @@ This adapter loads and intergrates with [CoreNLP](https://github.com/stanfordnlp
 
 Include the `spacyj-adapters-corenlp` dependency in your `pom.xml`.
 
-Load a new Spacy with a CoreNlpAdapter.
+Load a new SpaCy with a CoreNlpAdapter.
 
 ```java
 SpaCy spacy = SpaCy.create(CoreNlpAdapter.create();
