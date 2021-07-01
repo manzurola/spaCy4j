@@ -6,7 +6,7 @@ Java client for spaCy and more.
 
 ## About
 
-This library consists of two core modules; API and Adapter. The API module defines the token container classes, mimicking most of the functionality of Doc, Token etc from spaCy. The adapter module contains implemetations of integrations with NLP engines. There are currently two available adapters: [spaCy Server](https://github.com/neelkamath/spacy-server) and [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
+SpaCyJ enables the use of spaCy in Java via [spaCy Server](https://github.com/neelkamath/spacy-server). It provides an API similar to spaCy, mimicking most of the functionality of Doc, Span and Token. As it was originally used as a wrapper around [CoreNLP](https://github.com/stanfordnlp/CoreNLP), an adapter that translates CoreNLP objects to SpaCyJ containers is provided as well.
 
 ## Usage
 
