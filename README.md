@@ -17,7 +17,7 @@ An instance of spacy-server must be running in the background.
 
 Include the following dependency in you pom.xml (available via github packages only):
 
-```
+```xml
 <dependency>
   <groupId>edu.guym</groupId>
   <artifactId>spacyj-adapters-spacy-server</artifactId>
@@ -45,7 +45,7 @@ for (Token token : doc.tokens()) {
 This adapter loads and intergrates with [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
 Include the following dependency in you pom.xml (available via github packages only):
 
-```
+```xml
 <dependency>
   <groupId>edu.guym</groupId>
   <artifactId>spacyj-adapters-corenlp</artifactId>
