@@ -26,10 +26,10 @@ Include the following dependency in you pom.xml (available via github packages o
 ```
 
 
-Create a new Spacy with the relevant adapter as argument, and parse a document.
+Create a new SpaCy with the relevant adapter as argument, and parse a document.
 
 ```java
-Spacy spacy = Spacy.create(SpacyServerAdapter.create("localhost", 8080));
+SpaCy spacy = SpaCy.create(SpaCyServerAdapter.create("localhost", 8080));
 
 Doc doc = spacy.nlp("My head feels like a frisbee, twice its normal size.");
 
@@ -55,7 +55,7 @@ Include the following dependency in you pom.xml (available via github packages o
 Create a new Spacy with a new CoreNlpAdapter.
 
 ```java
-Spacy spacy = Spacy.create(CoreNlpAdapter.create();
+SpaCy spacy = SpaCy.create(CoreNlpAdapter.create();
 
 // same as above example
 ```
