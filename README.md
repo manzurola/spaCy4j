@@ -38,9 +38,10 @@ for (Token token : doc.tokens()) {
 ### CoreNLP Adapter
 
 This adapter loads and intergrates with [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
+
 Include the `spacyj-adapters-corenlp` dependency in your `pom.xml`.
 
-Create a new Spacy with a new CoreNlpAdapter.
+Load a new Spacy with a CoreNlpAdapter.
 
 ```java
 SpaCy spacy = SpaCy.create(CoreNlpAdapter.create();
