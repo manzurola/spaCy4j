@@ -1,6 +1,6 @@
 # spaCyJ
 
-spaCy adapters for the JVM.
+Java client for spaCy and more.
 
 ![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
 
