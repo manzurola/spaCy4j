@@ -1,4 +1,4 @@
-# spaCyJ 🚀
+# SpaCy4J 🚀
 
 Java client for spaCy and more.
 
