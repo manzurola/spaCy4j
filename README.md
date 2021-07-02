@@ -19,7 +19,7 @@ Available via [github packages](https://github.com/manzurola?tab=packages&repo_n
 This adapter intergrates with [spaCy Server](https://github.com/neelkamath/spacy-server).
 An instance of spacy-server must be running in the background.
 
-Include the `spacyj-adapters-spacy-server` dependency in your `pom.xml`.
+Include the `spacy4j-adapters-spacy-server` dependency in your `pom.xml`.
 
 Now, create a new SpaCy with the relevant adapter as argument, and parse a document.
 
@@ -39,7 +39,7 @@ for (Token token : doc.tokens()) {
 
 This adapter loads and intergrates with [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
 
-Include the `spacyj-adapters-corenlp` dependency in your `pom.xml`.
+Include the `spacy4j-adapters-corenlp` dependency in your `pom.xml`.
 
 Load a new SpaCy with a CoreNlpAdapter.
 
