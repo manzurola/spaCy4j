@@ -10,43 +10,29 @@ SpaCyJ enables the use of spaCy in Java via [spaCy Server](https://github.com/ne
 
 ## Installation
 
-Available via [github packages](https://github.com/manzurola?tab=packages&repo_name=spacy-java).
+First thing we need to get started is to add the chosen adapter to our maven dependencies. 
+Available choicese are `spacy4j-adapters-spacy-server` or `spacy4j-adapters-corenlp`, for spaCy server and CoreNLP, respectively. Refer to the [github packages](https://github.com/manzurola?tab=packages&repo_name=spacy-java) page for the full maven dependency.
 
-## Usage
+## Quick Start
 
-### SpaCy Server Adapter
-
-This adapter intergrates with [spaCy Server](https://github.com/neelkamath/spacy-server).
-An instance of spacy-server must be running in the background.
-
-Include the `spacy4j-adapters-spacy-server` dependency in your `pom.xml`.
-
-Now, create a new SpaCy with the relevant adapter as argument, and parse a document.
+Let's assume we chose the spacy-server adapter. The following snippet shows how to create a new `SpaCy` with a matching adapter, parse a document and inspect the tokens:
 
 ```java
-SpaCy spacy = SpaCy.create(SpaCyServerAdapter.create("localhost", 8080));
 
+// Create a new spacy-server adapter with host and port matching a running instance of spacy-server.
+SpaCyAdapter adapter = SpaCyServerAdapter.create("localhost", 8080);
+
+// Create a new SpaCy object. It is thread safe and should be reused across our app
+SpaCy spacy = SpaCy.create(adapter);
+
+// Parse a doc
 Doc doc = spacy.nlp("My head feels like a frisbee, twice its normal size.");
 
-// inspect tokens
+// Inspect tokens
 for (Token token : doc.tokens()) {
     System.out.printf("Token: %s, Tag: %s, Pos: %s, Dependency: %s%n", 
             token.text(), token.tag(), token.pos(), token.dependency());
 }
-```
-
-### CoreNLP Adapter
-
-This adapter loads and intergrates with [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
-
-Include the `spacy4j-adapters-corenlp` dependency in your `pom.xml`.
-
-Load a new SpaCy with a CoreNlpAdapter.
-
-```java
-SpaCy spacy = SpaCy.create(CoreNlpAdapter.create();
-
-// same as above example
 ```
 
 ## Contributions
