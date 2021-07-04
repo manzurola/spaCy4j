@@ -13,6 +13,11 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 
 @Testcontainers
 public class SpaCyServerTest {
@@ -32,7 +37,6 @@ public class SpaCyServerTest {
 
     @Test
     public void verifySpacyServerResponse() throws IOException {
-
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new SpaCyJacksonModule());
         InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("doc.json");
@@ -41,6 +45,15 @@ public class SpaCyServerTest {
         Doc actual = spacy.nlp("My head feels like a frisbee. Twice it's normal size. It feels like a football.");
 
         Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void verifyParseTextSucceeds() throws IOException, URISyntaxException {
+        URL url = this.getClass().getClassLoader().getResource("testtext.txt");
+        List<String> lines = Files.readAllLines(Path.of(url.toURI()));
+        for (String line : lines) {
+            spacy.nlp(line);
+        }
     }
 
 }

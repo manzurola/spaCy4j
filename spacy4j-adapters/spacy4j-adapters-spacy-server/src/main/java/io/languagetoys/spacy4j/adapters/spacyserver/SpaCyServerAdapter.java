@@ -53,13 +53,17 @@ public class SpaCyServerAdapter implements SpaCyAdapter {
 
     @Override
     public List<TokenData> nlp(String text) throws SpaCyException {
+
+        JsonObject body = new JsonObject();
+        body.addProperty("text", text);
+
         var request = HttpRequest.newBuilder(uri)
                 .header("accept", "application/json")
                 .version(HttpClient.Version.HTTP_1_1)
-                .POST(HttpRequest.BodyPublishers.ofString(String.format("{\"text\":\"%s\"}", text)))
+                .POST(HttpRequest.BodyPublishers.ofString(body.toString()))
                 .build();
 
-        HttpResponse<String> response = null;
+        HttpResponse<String> response;
         try {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
         } catch (Exception e) {
@@ -77,7 +81,6 @@ public class SpaCyServerAdapter implements SpaCyAdapter {
 
         JsonArray data = json.getAsJsonObject().get("data").getAsJsonArray();
         for (JsonElement sentence : data) {
-            String sentenceText = sentence.getAsJsonObject().get("text").getAsString();
             JsonArray tags = sentence.getAsJsonObject().get("tags").getAsJsonArray();
             boolean isSentStart = true;
             for (JsonElement spacyToken : tags) {

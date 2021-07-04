@@ -28,7 +28,7 @@
         <repository>
             <id>github</id>
             <name>GitHub spacy-java</name>
-            <url>https://maven.pkg.github.com/manzurola/spacy-java</url>
+            <url>https://maven.pkg.github.com/LanguageToys/spacy4j</url>
         </repository>
     </distributionManagement>
 
