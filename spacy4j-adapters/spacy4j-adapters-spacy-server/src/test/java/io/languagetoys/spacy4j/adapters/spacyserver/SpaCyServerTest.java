@@ -25,7 +25,7 @@ public class SpaCyServerTest {
     private SpaCy spacy;
 
     @Container
-    public final GenericContainer<?> spacyServer = new GenericContainer<>("neelkamath/spacy-server:2-en_core_web_sm")
+    public static final GenericContainer<?> spacyServer = new GenericContainer<>("neelkamath/spacy-server:2-en_core_web_sm")
             .withExposedPorts(8000);
 
     @BeforeEach
