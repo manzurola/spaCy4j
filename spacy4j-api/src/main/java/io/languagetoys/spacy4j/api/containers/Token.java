@@ -142,7 +142,7 @@ public final class Token {
     public final Optional<Token> next() {
         int next = index() + 1;
         if (next < doc.size()) {
-            return Optional.of(doc.getToken(next));
+            return Optional.of(doc.token(next));
         }
         return Optional.empty();
     }
@@ -151,18 +151,18 @@ public final class Token {
      * The syntactic parent, or “governor”, of this token.
      */
     public final Optional<Token> head() {
-        return Optional.ofNullable(doc.getToken(data().head()));
+        return Optional.ofNullable(doc.token(data().head()));
     }
 
     /**
      * A sequence of the token’s immediate syntactic children.
      */
     public final List<Token> children() {
-        return doc.tokenData()
+        return doc.data()
                 .stream()
                 .filter(t -> t.head() == data().index())
                 .map(TokenData::index)
-                .map(doc::getToken)
+                .map(doc::token)
                 .collect(Collectors.toList());
     }
 
@@ -209,7 +209,7 @@ public final class Token {
     }
 
     private TokenData data() {
-        return doc.tokenData().get(index);
+        return doc.data().get(index);
     }
 
     @Override
@@ -227,8 +227,6 @@ public final class Token {
 
     @Override
     public final String toString() {
-        return "TokenImpl{" +
-                "data=" + data() +
-                '}';
+        return "Token{" + text() + ", " + index() + '}';
     }
 }

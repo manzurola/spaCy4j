@@ -22,7 +22,7 @@ public final class Span {
         this.doc = Objects.requireNonNull(doc);
         this.start = start;
         this.end = end;
-        this.text = TextUtils.writeTextWithoutWs(doc.tokenData().subList(start, end));
+        this.text = TextUtils.writeTextWithoutWs(doc.data().subList(start, end));
     }
 
     public static Span create(Doc doc, int start, int end) {
@@ -73,7 +73,7 @@ public final class Span {
     public final List<Token> tokens() {
         return IntStream
                 .range(start, end)
-                .mapToObj(doc::getToken)
+                .mapToObj(doc::token)
                 .collect(Collectors.toList());
     }
 
@@ -126,11 +126,11 @@ public final class Span {
      * If multiple tokens are equally high in the tree, the first token is taken.
      */
     public final Optional<Token> root() {
-        List<TokenData> data = doc.tokenData().subList(start, end);
+        List<TokenData> data = doc.data().subList(start, end);
         return data
                 .stream()
                 .filter(t -> t.head() == 0)
-                .map(t -> doc.getToken(t.index()))
+                .map(t -> doc.token(t.index()))
                 .findFirst();
     }
 
@@ -138,7 +138,7 @@ public final class Span {
      * Get the underlying token data for this span.
      */
     public final List<TokenData> tokenData() {
-        return doc().tokenData().subList(start, end);
+        return doc().data().subList(start, end);
     }
 
     @Override
@@ -156,9 +156,7 @@ public final class Span {
 
     @Override
     public final String toString() {
-        return "SpanImpl{" +
-                "text='" + text + '\'' +
-                '}';
+        return "Span{" + text + '}';
     }
 
 }

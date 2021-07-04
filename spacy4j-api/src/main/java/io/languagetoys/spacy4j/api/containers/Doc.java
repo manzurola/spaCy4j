@@ -18,11 +18,11 @@ import java.util.stream.Stream;
 public final class Doc {
 
     private final String text;
-    private final List<TokenData> tokenData;
+    private final List<TokenData> data;
 
-    private Doc(String text, List<TokenData> tokenData) {
+    private Doc(String text, List<TokenData> data) {
         this.text = text;
-        this.tokenData = Objects.requireNonNull(tokenData);
+        this.data = Objects.requireNonNull(data);
     }
 
     public static Doc create(String text, List<TokenData> tokens) {
@@ -44,21 +44,21 @@ public final class Doc {
      * Returns true if the doc contains no tokens.
      */
     public final boolean isEmpty() {
-        return tokenData.isEmpty();
+        return data.isEmpty();
     }
 
     /**
      * The character offset for the start of the document.
      */
     public final int startChar() {
-        return isEmpty() ? 0 : tokenData.get(0).beginOffset();
+        return isEmpty() ? 0 : data.get(0).beginOffset();
     }
 
     /**
      * The character offset for the end of the document.
      */
     public final int endChar() {
-        return isEmpty() ? 0 : tokenData.get(size() - 1).beginOffset();
+        return isEmpty() ? 0 : data.get(size() - 1).beginOffset();
     }
 
     /**
@@ -67,14 +67,14 @@ public final class Doc {
     public final List<Span> sentences() {
         int[] indexes =
                 Stream.of(
-                        IntStream.range(0, tokenData.size())
-                                .filter(i -> tokenData.get(i).isSentenceStart()),
-                        IntStream.of(tokenData.size())
+                        IntStream.range(0, data.size())
+                                .filter(i -> data.get(i).isSentenceStart()),
+                        IntStream.of(data.size())
                 ).flatMapToInt(s -> s).toArray();
 
         return IntStream
                 .range(0, indexes.length - 1)
-                .mapToObj(i -> tokenData.subList(indexes[i], indexes[i + 1]))
+                .mapToObj(i -> data.subList(indexes[i], indexes[i + 1]))
                 .filter(l -> !l.isEmpty())
                 .map(sent -> {
                     int start = sent.get(0).index();
@@ -88,7 +88,7 @@ public final class Doc {
      * Get all tokens in doc.
      */
     public final List<Token> tokens() {
-        return tokenData.stream()
+        return data.stream()
                 .map(t -> Token.create(this, t.index()))
                 .collect(Collectors.toList());
     }
@@ -106,7 +106,7 @@ public final class Doc {
      * @param i the index of the desired token.
      * @throws IndexOutOfBoundsException if i is out of bounds
      */
-    public final Token getToken(int i) throws IndexOutOfBoundsException {
+    public final Token token(int i) throws IndexOutOfBoundsException {
         Objects.checkIndex(i, size());
         return tokens().get(i);
     }
@@ -115,7 +115,7 @@ public final class Doc {
      * Get the number of tokens in the document.
      */
     public final int size() {
-        return tokenData.size();
+        return data.size();
     }
 
     /**
@@ -126,15 +126,15 @@ public final class Doc {
      * @param end   offset of the last token in the span (exclusive)
      */
     public final Span spanOf(int start, int end) {
-        Objects.checkFromToIndex(start, end, tokenData.size());
+        Objects.checkFromToIndex(start, end, data.size());
         return Span.create(this, start, end);
     }
 
     /**
      * Get the underlying token data for serialization/deserialization and creation of {@link Doc} objects.
      */
-    public final List<TokenData> tokenData() {
-        return tokenData;
+    public final List<TokenData> data() {
+        return data;
     }
 
     @Override
@@ -142,20 +142,17 @@ public final class Doc {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Doc doc = (Doc) o;
-        return text.equals(doc.text) && tokenData.equals(doc.tokenData);
+        return text.equals(doc.text) && data.equals(doc.data);
     }
 
     @Override
     public final int hashCode() {
-        return Objects.hash(text, tokenData);
+        return Objects.hash(text, data);
     }
 
     @Override
     public final String toString() {
-        return "Doc{" +
-                "text='" + text + '\'' +
-                ", tokenData=" + tokenData +
-                '}';
+        return "Doc{" + text + '}';
     }
 
 }
