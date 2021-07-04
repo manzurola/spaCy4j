@@ -11,6 +11,10 @@ import org.junit.jupiter.api.TestInstance;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -81,6 +85,15 @@ public class CoreNLPAdapterTest {
         assertTrue(doc.tokens().get(1).likeNum());
         assertTrue(doc.tokens().get(2).likeNum());
         assertTrue(doc.tokens().get(3).likeNum());
+    }
+
+    @Test
+    public void verifyParseTextSucceeds() throws IOException, URISyntaxException {
+        URL url = this.getClass().getClassLoader().getResource("testtext.txt");
+        List<String> lines = Files.readAllLines(Path.of(url.toURI()));
+        for (String line : lines) {
+            spacy.nlp(line);
+        }
     }
 
 }
