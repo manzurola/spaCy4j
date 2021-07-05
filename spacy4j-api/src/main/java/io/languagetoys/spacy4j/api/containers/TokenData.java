@@ -263,8 +263,6 @@ public final class TokenData implements Serializable {
     public String toString() {
         return "TokenData{" +
                 "text='" + text + '\'' +
-                ", whitespaceBefore='" + whitespaceBefore + '\'' +
-                ", whitespaceAfter='" + whitespaceAfter + '\'' +
                 ", index=" + index +
                 ", beginOffset=" + beginOffset +
                 ", endOffset=" + endOffset +
@@ -276,6 +274,8 @@ public final class TokenData implements Serializable {
                 ", sentenceStart=" + sentenceStart +
                 ", isPunct=" + isPunct +
                 ", likeNum=" + likeNum +
+                ", whitespaceBefore='" + whitespaceBefore + '\'' +
+                ", whitespaceAfter='" + whitespaceAfter + '\'' +
                 '}';
     }
 

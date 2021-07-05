@@ -79,7 +79,6 @@ public class CoreNLPAdapterTest {
 
     @Test
     public void verifyLikeNum() {
-        // a previous bug parsed ) as -RRB-
         Doc doc = spacy.nlp("ten 10.5 one thousand");
         assertTrue(doc.tokens().get(0).likeNum());
         assertTrue(doc.tokens().get(1).likeNum());

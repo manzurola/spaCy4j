@@ -6,22 +6,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import io.languagetoys.spacy4j.api.containers.Doc;
 import io.languagetoys.spacy4j.api.containers.TokenData;
-import io.languagetoys.spacy4j.api.serialize.jackson.model.JsonDoc;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DocDeserializer extends StdDeserializer<Doc> {
+class DocDeserializer extends StdDeserializer<Doc> {
 
     private final ObjectMapper mapper;
 
-    public DocDeserializer(ObjectMapper mapper) {
+    DocDeserializer(ObjectMapper mapper) {
         this(Doc.class, mapper);
     }
 
-    public DocDeserializer(Class<Doc> t, ObjectMapper mapper) {
+    DocDeserializer(Class<Doc> t, ObjectMapper mapper) {
         super(t);
         this.mapper = mapper;
     }

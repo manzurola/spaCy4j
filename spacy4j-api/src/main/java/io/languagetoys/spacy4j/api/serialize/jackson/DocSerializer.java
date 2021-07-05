@@ -7,22 +7,19 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import io.languagetoys.spacy4j.api.containers.Doc;
 import io.languagetoys.spacy4j.api.containers.Span;
 import io.languagetoys.spacy4j.api.containers.TokenData;
-import io.languagetoys.spacy4j.api.serialize.jackson.model.JsonDoc;
-import io.languagetoys.spacy4j.api.serialize.jackson.model.JsonSentence;
-import io.languagetoys.spacy4j.api.serialize.jackson.model.JsonToken;
 
 import java.io.IOException;
 import java.util.List;
 
-public class DocSerializer extends StdSerializer<Doc> {
+class DocSerializer extends StdSerializer<Doc> {
 
     private final ObjectMapper mapper;
 
-    public DocSerializer(ObjectMapper mapper) {
+    DocSerializer(ObjectMapper mapper) {
         this(Doc.class, mapper);
     }
 
-    public DocSerializer(Class<Doc> t, ObjectMapper mapper) {
+    DocSerializer(Class<Doc> t, ObjectMapper mapper) {
         super(t);
         this.mapper = mapper;
     }

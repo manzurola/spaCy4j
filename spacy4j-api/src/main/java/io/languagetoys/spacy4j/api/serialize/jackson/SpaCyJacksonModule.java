@@ -8,7 +8,7 @@ import io.languagetoys.spacy4j.api.containers.Doc;
 
 import static com.fasterxml.jackson.annotation.PropertyAccessor.*;
 
-public class SpaCyJacksonModule extends SimpleModule {
+public final class SpaCyJacksonModule extends SimpleModule {
 
     public SpaCyJacksonModule() {
         ObjectMapper mapper = new ObjectMapper()
