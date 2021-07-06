@@ -97,8 +97,8 @@ public final class Span {
     }
 
     /**
-     * The sentence span that this span is a part of. If the span happens to cross sentence boundaries,
-     * only the first sentence will be returned.
+     * The sentence span that this span is a part of. If the span happens to cross sentence boundaries, only the first
+     * sentence will be returned.
      */
     public final Span sentence() {
         return doc.sentences().stream()
@@ -122,8 +122,8 @@ public final class Span {
     }
 
     /**
-     * The token with the shortest path to the root of the sentence (or the root itself).
-     * If multiple tokens are equally high in the tree, the first token is taken.
+     * The token with the shortest path to the root of the sentence (or the root itself). If multiple tokens are equally
+     * high in the tree, the first token is taken.
      */
     public final Optional<Token> root() {
         List<TokenData> data = doc.data().subList(start, end);
@@ -137,7 +137,7 @@ public final class Span {
     /**
      * Get the underlying token data for this span.
      */
-    public final List<TokenData> tokenData() {
+    public final List<TokenData> data() {
         return doc().data().subList(start, end);
     }
 

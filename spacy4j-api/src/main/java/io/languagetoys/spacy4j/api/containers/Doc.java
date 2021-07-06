@@ -9,11 +9,11 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
- * A Doc is a sequence of {@link Token}.
- * The Doc object holds a list of {@link TokenData} objects. {@link Span} and {@link Token} are views of this array.
+ * A Doc is a sequence of {@link Token}. The Doc object holds a list of {@link TokenData} objects. {@link Span} and
+ * {@link Token} are views of this array.
  * <p>
- * The API is greatly inspired by <a href="https://spacy.io/api/doc">Spacy</a>, but exposes less functionality.
- * Even the docs are mostly copy-pasted from the official spaCy docs.
+ * The API is greatly inspired by <a href="https://spacy.io/api/doc">Spacy</a>, but exposes less functionality. Even the
+ * docs are mostly copy-pasted from the official spaCy docs.
  */
 public final class Doc {
 
@@ -65,12 +65,11 @@ public final class Doc {
      * Get all spans representing the sentences in document.
      */
     public final List<Span> sentences() {
-        int[] indexes =
-                Stream.of(
-                        IntStream.range(0, data.size())
-                                .filter(i -> data.get(i).isSentenceStart()),
-                        IntStream.of(data.size())
-                ).flatMapToInt(s -> s).toArray();
+        int[] indexes = Stream
+                .of(IntStream.range(0, data.size()).filter(i -> data.get(i).isSentenceStart()),
+                    IntStream.of(data.size()))
+                .flatMapToInt(s -> s)
+                .toArray();
 
         return IntStream
                 .range(0, indexes.length - 1)
@@ -119,8 +118,7 @@ public final class Doc {
     }
 
     /**
-     * Get a span of [start, end). Indices pertain to document token offsets.
-     * Similar to sublist of List.
+     * Get a span of [start, end). Indices pertain to document token offsets. Similar to sublist of List.
      *
      * @param start offset of the first token to include in the span
      * @param end   offset of the last token in the span (exclusive)

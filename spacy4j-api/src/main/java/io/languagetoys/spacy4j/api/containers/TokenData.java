@@ -225,19 +225,19 @@ public final class TokenData implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         TokenData tokenData = (TokenData) o;
         return index == tokenData.index &&
-                beginOffset == tokenData.beginOffset &&
-                endOffset == tokenData.endOffset &&
-                head == tokenData.head &&
-                sentenceStart == tokenData.sentenceStart &&
-                isPunct == tokenData.isPunct &&
-                likeNum == tokenData.likeNum &&
-                text.equals(tokenData.text) &&
-                whitespaceBefore.equals(tokenData.whitespaceBefore) &&
-                whitespaceAfter.equals(tokenData.whitespaceAfter) &&
-                lemma.equals(tokenData.lemma) &&
-                tag.equals(tokenData.tag) &&
-                pos.equals(tokenData.pos) &&
-                dependency.equals(tokenData.dependency);
+               beginOffset == tokenData.beginOffset &&
+               endOffset == tokenData.endOffset &&
+               head == tokenData.head &&
+               sentenceStart == tokenData.sentenceStart &&
+               isPunct == tokenData.isPunct &&
+               likeNum == tokenData.likeNum &&
+               text.equals(tokenData.text) &&
+               whitespaceBefore.equals(tokenData.whitespaceBefore) &&
+               whitespaceAfter.equals(tokenData.whitespaceAfter) &&
+               lemma.equals(tokenData.lemma) &&
+               tag.equals(tokenData.tag) &&
+               pos.equals(tokenData.pos) &&
+               dependency.equals(tokenData.dependency);
     }
 
     @Override
@@ -262,21 +262,21 @@ public final class TokenData implements Serializable {
     @Override
     public String toString() {
         return "TokenData{" +
-                "text='" + text + '\'' +
-                ", index=" + index +
-                ", beginOffset=" + beginOffset +
-                ", endOffset=" + endOffset +
-                ", lemma='" + lemma + '\'' +
-                ", tag='" + tag + '\'' +
-                ", pos='" + pos + '\'' +
-                ", head=" + head +
-                ", dependency='" + dependency + '\'' +
-                ", sentenceStart=" + sentenceStart +
-                ", isPunct=" + isPunct +
-                ", likeNum=" + likeNum +
-                ", whitespaceBefore='" + whitespaceBefore + '\'' +
-                ", whitespaceAfter='" + whitespaceAfter + '\'' +
-                '}';
+               "text='" + text + '\'' +
+               ", index=" + index +
+               ", beginOffset=" + beginOffset +
+               ", endOffset=" + endOffset +
+               ", lemma='" + lemma + '\'' +
+               ", tag='" + tag + '\'' +
+               ", pos='" + pos + '\'' +
+               ", head=" + head +
+               ", dependency='" + dependency + '\'' +
+               ", sentenceStart=" + sentenceStart +
+               ", isPunct=" + isPunct +
+               ", likeNum=" + likeNum +
+               ", whitespaceBefore='" + whitespaceBefore + '\'' +
+               ", whitespaceAfter='" + whitespaceAfter + '\'' +
+               '}';
     }
 
 

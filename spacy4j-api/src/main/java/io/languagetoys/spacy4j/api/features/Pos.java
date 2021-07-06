@@ -35,8 +35,9 @@ public enum Pos {
     }
 
     /**
-     * Returns true if this PTB pos equals the supplied tag, false otherwise.
-     * This method can be overridden/changed to accommodate different representation of a PTB tag name
+     * Returns true if this PTB pos equals the supplied tag, false otherwise. This method can be overridden/changed to
+     * accommodate different representation of a PTB tag name
+     *
      * @param tag a UD part-of-speech tag name, such as VERB or PRON.
      */
     public boolean matches(String tag) {
