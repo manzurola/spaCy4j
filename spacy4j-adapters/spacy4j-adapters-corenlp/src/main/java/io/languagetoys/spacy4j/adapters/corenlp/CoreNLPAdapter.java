@@ -1,21 +1,21 @@
 package io.languagetoys.spacy4j.adapters.corenlp;
 
-import io.languagetoys.spacy4j.api.SpaCyAdapter;
-import io.languagetoys.spacy4j.api.containers.TokenData;
-import io.languagetoys.spacy4j.api.exceptions.SpaCyException;
-import io.languagetoys.spacy4j.api.features.Pos;
-import io.languagetoys.spacy4j.api.utils.PtbToUdPosMapper;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.pipeline.CoreDocument;
 import edu.stanford.nlp.pipeline.CoreSentence;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.TypedDependency;
+import io.languagetoys.spacy4j.api.SpaCyAdapter;
+import io.languagetoys.spacy4j.api.containers.TokenData;
+import io.languagetoys.spacy4j.api.exceptions.SpaCyException;
+import io.languagetoys.spacy4j.api.features.Pos;
+import io.languagetoys.spacy4j.api.utils.PtbToUdPosMapper;
 
 import java.util.*;
 
 /**
- * Stanford CoreNLP Java client adapter. Loads in memory.
- * Adapts the corenlp tokens as if they were spaCy's: Index starts at 0, supports likeNum, isPunct etc.
+ * Stanford CoreNLP Java client adapter. Loads in memory. Adapts the corenlp tokens as if they were spaCy's: Index
+ * starts at 0, supports likeNum, isPunct etc.
  */
 public final class CoreNLPAdapter implements SpaCyAdapter {
 
@@ -28,8 +28,8 @@ public final class CoreNLPAdapter implements SpaCyAdapter {
     }
 
     /**
-     * Create a CoreNlpAdapter with a StanfordCoreNLP configured with default annotators
-     * {@code "tokenize, ssplit, pos, lemma, depparse"}.
+     * Create a CoreNlpAdapter with a StanfordCoreNLP configured with default annotators {@code "tokenize, ssplit, pos,
+     * lemma, depparse"}.
      */
     public static CoreNLPAdapter create() {
         Properties props = new Properties();
@@ -79,21 +79,21 @@ public final class CoreNLPAdapter implements SpaCyAdapter {
 
                 String text = coreLabel.originalText();
                 words.add(TokenData.builder()
-                        .setText(text)
-                        .setBefore(coreLabel.before())
-                        .setAfter(coreLabel.after())
-                        .setIndex(tokenIndex)
-                        .setBeginOffset(coreLabel.beginPosition())
-                        .setEndOffset(coreLabel.endPosition())
-                        .setLemma(lemma)
-                        .setTag(tag)
-                        .setPos(pos)
-                        .setHead(head)
-                        .setDependency(dep)
-                        .setSentenceStart(isSentenceStart)
-                        .setIsPunct(Pos.PUNCT.matches(pos))
-                        .setLikeNum(Pos.NUM.matches(pos))
-                        .build());
+                                  .setText(text)
+                                  .setBefore(coreLabel.before())
+                                  .setAfter(coreLabel.after())
+                                  .setIndex(tokenIndex)
+                                  .setBeginOffset(coreLabel.beginPosition())
+                                  .setEndOffset(coreLabel.endPosition())
+                                  .setLemma(lemma)
+                                  .setTag(tag)
+                                  .setPos(pos)
+                                  .setHead(head)
+                                  .setDependency(dep)
+                                  .setSentenceStart(isSentenceStart)
+                                  .setIsPunct(Pos.PUNCT.matches(pos))
+                                  .setLikeNum(Pos.NUM.matches(pos))
+                                  .build());
 
                 tokenIndex++;
                 isSentenceStart = false;

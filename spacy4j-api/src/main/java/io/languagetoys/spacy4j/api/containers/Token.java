@@ -109,7 +109,8 @@ public final class Token {
     }
 
     /**
-     * Coarse-grained part-of-speech from the <a href="https://universaldependencies.org/docs/u/pos/">Universal POS tag set</a>.
+     * Coarse-grained part-of-speech from the <a href="https://universaldependencies.org/docs/u/pos/">Universal POS tag
+     * set</a>.
      */
     public final String pos() {
         return data().pos();
@@ -208,7 +209,7 @@ public final class Token {
         return this.filter(predicate).isPresent();
     }
 
-    private TokenData data() {
+    public final TokenData data() {
         return doc.data().get(index);
     }
 

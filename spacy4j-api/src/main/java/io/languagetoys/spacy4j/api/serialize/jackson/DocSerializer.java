@@ -30,7 +30,7 @@ class DocSerializer extends StdSerializer<Doc> {
                           SerializerProvider provider) throws IOException {
         JsonDoc jsonDoc = new JsonDoc();
         for (Span span : doc.sentences()) {
-            List<TokenData> data = span.tokenData();
+            List<TokenData> data = span.data();
             JsonSentence sentence = new JsonSentence();
 
             sentence.text = span.text();

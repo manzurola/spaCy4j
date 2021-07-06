@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 
 /**
  * Penn Treebank Parts of Speech
- *
  */
 public enum Tag {
 
@@ -66,8 +65,9 @@ public enum Tag {
     }
 
     /**
-     * Returns true if this PTB pos equals the supplied tag, false otherwise.
-     * This method can be overridden/changed to accommodate different representation of a PTB tag name
+     * Returns true if this PTB pos equals the supplied tag, false otherwise. This method can be overridden/changed to
+     * accommodate different representation of a PTB tag name
+     *
      * @param tag a PTB part-of-speech tag name, such as CC or VBZ.
      */
     public boolean matches(String tag) {

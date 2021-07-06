@@ -10,7 +10,7 @@ public class TextUtils {
     }
 
     public static String writeTextWithoutWs(List<TokenData> tokens) {
-       return writeTextWithWs(tokens).trim();
+        return writeTextWithWs(tokens).trim();
     }
 
     public static String writeTextWithWs(List<TokenData> tokens) {
@@ -22,4 +22,5 @@ public class TextUtils {
                 .map(t -> t.text().concat(t.whitespaceAfter()))
                 .reduce(spaceBefore, String::concat);
     }
+
 }
