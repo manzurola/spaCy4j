@@ -1,34 +1,34 @@
 # SpaCy4J 🚀
 
-Java client for spaCy and more.
+SpaCy4J is a library that allows Java developers to use [spaCy](https://github.com/explosion/spaCy) via [spaCy Server](https://github.com/neelkamath/spacy-server).
+It provides an API similar to spaCy, mimicking most of the functionality of Doc, Span and Token. As it was originally used as a wrapper around [CoreNLP](https://github.com/stanfordnlp/CoreNLP), an adapter that translates CoreNLP objects to SpaCy4J
+containers is provided as well.
 
 ![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
 
-## About
+## Prerequisits
 
-SpaCyJ enables the use of spaCy in Java via [spaCy Server](https://github.com/neelkamath/spacy-server). It provides an
-API similar to spaCy, mimicking most of the functionality of Doc, Span and Token. As it was originally used as a wrapper
-around [CoreNLP](https://github.com/stanfordnlp/CoreNLP), an adapter that translates CoreNLP objects to SpaCyJ
-containers is provided as well.
+Before you begin, ensure you have met the following requirements:
 
-## Installation
+* You have Java 11 installed.
+* To use the spacy-server adapter, spin up a docker instance of spaCy Server as described in the [docker hub offical docs](https://hub.docker.com/r/neelkamath/spacy-server).
 
-First thing we need to get started is to add the chosen adapter to our maven dependencies. Available choicese
-are `spacy4j-adapters-spacy-server` or `spacy4j-adapters-corenlp`, for spaCy server and CoreNLP, respectively. Refer to
-the [github packages](https://github.com/manzurola?tab=packages&repo_name=spacy-java) page for the full maven
-dependency.
+## Installing Aligner
 
-## Quick Start
+Available as Maven dependencies via [GitHub Packages](https://github.com/manzurola?tab=packages&repo_name=spacy-java) as `spacy4j-adapters-spacy-server` or `spacy4j-adapters-corenlp`.
 
-Let's assume we chose the spacy-server adapter. The following snippet shows how to create a new `SpaCy` with a matching
-adapter, parse a document and inspect the tokens:
+See GitHub documentation on [installing a package](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package).
+
+## Using SpaCy4J
+
+To use SpaCy4J in code, follow these steps:
 
 ```java
 
-// Create a new spacy-server adapter with host and port matching a running instance of spacy-server.
+// Create a new spacy-server adapter with host and port matching a running instance of spacy-server
 SpaCyAdapter adapter = SpaCyServerAdapter.create("localhost", 8080);
 
-// Create a new SpaCy object. It is thread safe and should be reused across our app
+// Create a new SpaCy object. It is thread safe and should be reused across your app
 SpaCy spacy = SpaCy.create(adapter);
 
 // Parse a doc
@@ -41,7 +41,35 @@ for (Token token : doc.tokens()) {
 }
 ```
 
+If you wish to use the CoreNLP adapter, replace the first line above with the following:
+
+```
+SpaCyAdapter adapter = CoreNLPAdapter.create();
+```
+
 ## Contributions
 
-[Contributions](https://github.com/manzurola/aligner/blob/a39d2719394fa258d3193e8258231950a3647920/CONTRIBUTING.md) are
-welcome.
+To contribute to SpaCy4J, follow these steps:
+
+1. Fork this repository.
+2. Create a branch: `git checkout -b <branch_name>`.
+3. Make your changes and commit them: `git commit -m '<commit_message>'`
+4. Push to the original branch: `git push origin <project_name>/<location>`
+5. Create the pull request.
+
+Alternatively see the GitHub documentation on [creating a pull request](https://docs.github.com/en/github/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+
+        
+## Contributors
+        
+Thanks to the following people who have contributed to this project:
+        
+* [@manzurola](https://github.com/manzurola) 🐈        
+
+## Contact
+
+If you want to contact me you can reach me at [guy.manzurola@gmail.com](guy.manzurola@gmail.com).
+
+## License
+        
+This project uses the following license: [MIT](https://github.com/LanguageToys/aligner/blob/555fd35e842feb8d899d7197a1965ea01bc74c95/LICENSE).
