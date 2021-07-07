@@ -13,7 +13,7 @@ containers is provided as well.
 Before you begin, ensure you have met the following requirements:
 
 * You have Java 11 installed.
-* To use the spacy-server adapter, spin up a docker instance of spaCy Server as described in the [docker hub offical docs](https://hub.docker.com/r/neelkamath/spacy-server).
+* To use the spacy-server adapter, spin up a docker instance of spaCy Server as described in the [official Docker Hub docs](https://hub.docker.com/r/neelkamath/spacy-server).
 
 ## Installing Aligner
 
