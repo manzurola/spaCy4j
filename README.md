@@ -15,7 +15,7 @@ Before you begin, ensure you have met the following requirements:
 * You have Java 11 installed.
 * To use the spacy-server adapter, spin up a docker instance of spaCy Server as described in the [official Docker Hub docs](https://hub.docker.com/r/neelkamath/spacy-server).
 
-## Installing Aligner
+## Installing SpaCy4J
 
 Available as Maven dependencies via [GitHub Packages](https://github.com/manzurola?tab=packages&repo_name=spacy-java) as `spacy4j-adapters-spacy-server` or `spacy4j-adapters-corenlp`.
 
