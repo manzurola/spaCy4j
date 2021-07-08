@@ -1,6 +1,6 @@
-# SpaCy4J 🚀
+# spaCy4J 🚀
 
-SpaCy4J is a library that allows developers to use [spaCy](https://github.com/explosion/spaCy) in Java via [spaCy Server](https://github.com/neelkamath/spacy-server).
+spaCy4J is a library that allows developers to use [spaCy](https://github.com/explosion/spaCy) in Java via [spaCy Server](https://github.com/neelkamath/spacy-server).
 It provides an API similar to spaCy, mimicking most of the functionality of Doc, Span and Token.  
 
 As it was originally developed for [CoreNLP](https://github.com/stanfordnlp/CoreNLP), an adapter that translates CoreNLP objects to SpaCy4J
@@ -15,15 +15,15 @@ Before you begin, ensure you have met the following requirements:
 * You have Java 11 installed.
 * To use the spacy-server adapter, spin up a docker instance of spaCy Server as described in the [official Docker Hub docs](https://hub.docker.com/r/neelkamath/spacy-server).
 
-## Installing SpaCy4J
+## Installing spaCy4J
 
 Available as Maven dependencies via [GitHub Packages](https://github.com/manzurola?tab=packages&repo_name=spacy-java) as `spacy4j-adapters-spacy-server` or `spacy4j-adapters-corenlp`.
 
 See GitHub documentation on [installing a package](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package).
 
-## Using SpaCy4J
+## Using spaCy4J
 
-To use SpaCy4J in code, follow these steps:
+To use spaCy4J in code, follow these steps:
 
 ```java
 
@@ -51,7 +51,7 @@ SpaCyAdapter adapter = CoreNLPAdapter.create();
 
 ## Contributions
 
-To contribute to SpaCy4J, follow these steps:
+To contribute to spaCy4J, follow these steps:
 
 1. Fork this repository.
 2. Create a branch: `git checkout -b <branch_name>`.
