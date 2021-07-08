@@ -1,6 +1,6 @@
 # SpaCy4J 🚀
 
-SpaCy4J is a library that allows Java developers to use [spaCy](https://github.com/explosion/spaCy) via [spaCy Server](https://github.com/neelkamath/spacy-server).
+SpaCy4J is a library that allows developers to use [spaCy](https://github.com/explosion/spaCy) in Java via [spaCy Server](https://github.com/neelkamath/spacy-server).
 It provides an API similar to spaCy, mimicking most of the functionality of Doc, Span and Token.  
 
 As it was originally developed for [CoreNLP](https://github.com/stanfordnlp/CoreNLP), an adapter that translates CoreNLP objects to SpaCy4J
