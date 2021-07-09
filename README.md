@@ -28,7 +28,7 @@ To use spaCy4J in code, follow these steps:
 ```java
 
 // Create a new spacy-server adapter with host and port matching a running instance of spacy-server
-SpaCyAdapter adapter = SpaCyServerAdapter.create("localhost", 8080);
+SpaCyAdapter adapter = SpaCyServerAdapter.create("localhost", 8000);
 
 // Create a new SpaCy object. It is thread safe and should be reused across your app
 SpaCy spacy = SpaCy.create(adapter);
