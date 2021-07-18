@@ -6,6 +6,7 @@ import edu.stanford.nlp.pipeline.CoreSentence;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.trees.TypedDependency;
 import io.languagetoys.spacy4j.api.SpaCyAdapter;
+import io.languagetoys.spacy4j.api.containers.Doc;
 import io.languagetoys.spacy4j.api.containers.TokenData;
 import io.languagetoys.spacy4j.api.exceptions.SpaCyException;
 import io.languagetoys.spacy4j.api.features.Pos;
@@ -47,13 +48,14 @@ public final class CoreNLPAdapter implements SpaCyAdapter {
     }
 
     @Override
-    public final List<TokenData> nlp(String text) throws SpaCyException {
+    public final Doc nlp(String text) throws SpaCyException {
         CoreDocument document = new CoreDocument(text);
         pipeline.annotate(document);
         if (document.sentences().size() == 0) {
-            return List.of();
+            return Doc.create(text, List.of());
         }
-        return extractTokenData(document);
+        List<TokenData> tokens = extractTokenData(document);
+        return Doc.create(text, tokens);
     }
 
     private List<TokenData> extractTokenData(CoreDocument document) {

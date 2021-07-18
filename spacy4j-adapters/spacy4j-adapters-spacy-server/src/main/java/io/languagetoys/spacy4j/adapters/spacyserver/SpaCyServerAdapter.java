@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import io.languagetoys.spacy4j.api.SpaCyAdapter;
+import io.languagetoys.spacy4j.api.containers.Doc;
 import io.languagetoys.spacy4j.api.containers.TokenData;
 import io.languagetoys.spacy4j.api.exceptions.SpaCyException;
 
@@ -52,7 +53,7 @@ public class SpaCyServerAdapter implements SpaCyAdapter {
     }
 
     @Override
-    public List<TokenData> nlp(String text) throws SpaCyException {
+    public Doc nlp(String text) throws SpaCyException {
 
         JsonObject body = new JsonObject();
         body.addProperty("text", text);
@@ -70,7 +71,8 @@ public class SpaCyServerAdapter implements SpaCyAdapter {
             throw new RuntimeException(e);
         }
 
-        return fromJson(response.body());
+        List<TokenData> tokens = fromJson(response.body());
+        return Doc.create(text, tokens);
     }
 
     private List<TokenData> fromJson(String body) {
