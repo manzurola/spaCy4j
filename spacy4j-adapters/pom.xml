@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>spacy4j</artifactId>
-        <groupId>io.languagetoys</groupId>
-        <version>0.1.0</version>
+        <groupId>com.github.manzurola</groupId>
+        <version>0.2.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -24,9 +24,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.languagetoys</groupId>
+            <groupId>com.github.manzurola</groupId>
             <artifactId>spacy4j-api</artifactId>
-            <version>0.1.0</version>
+            <version>0.2.0</version>
         </dependency>
     </dependencies>
 
