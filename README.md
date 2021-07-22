@@ -13,20 +13,32 @@ containers is provided as well.
 Before you begin, ensure you have met the following requirements:
 
 * You have Java 11 installed.
+* You have access to Github Packages Maven registry as described [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages).
 
-To use the spacy-server adapter, ensure you have met the following requirements:
+Additionaly, to use the spacy-server adapter, ensure you have met the following requirements:
 
 * You have [Docker](https://docs.docker.com/get-docker/) installed.
 * You have a running instance of spaCy Server as described in the [official Docker Hub docs](https://hub.docker.com/r/neelkamath/spacy-server).
 
 ## Installing spaCy4J
 
-Install either of the following Maven dependncies via [GitHub Packages](https://github.com/manzurola?tab=packages&repo_name=spacy-java):
-* `spacy4j-adapters-spacy-server` to integrate with spaCy Server 
-* `spacy4j-adapters-corenlp` to integrate with CoreNLP
-* `spacy4j-api` to use the container API alone, which is included with either of the above
+To use the spaCy Server adapter, add this to the dependencies section in your `pom.xml`:
+```xml
+<dependency>
+  <groupId>com.github.manzurola</groupId>
+  <artifactId>spacy4j-adapters-spacy-server</artifactId>
+  <version>0.2.0</version>
+</dependency>
+```
 
-See GitHub documentation on [installing a package](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#installing-a-package).
+To use the CoreNLP adapter, add this to the dependencies section in your `pom.xml`:
+```xml
+<dependency>
+  <groupId>com.github.manzurola</groupId>
+  <artifactId>spacy4j-adapters-corenlp</artifactId>
+  <version>0.2.0</version>
+</dependency>
+```
 
 ## Using spaCy4J
 
