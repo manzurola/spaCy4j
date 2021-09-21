@@ -228,6 +228,6 @@ public final class Token {
 
     @Override
     public final String toString() {
-        return "Token{" + text() + ", " + index() + '}';
+        return text();
     }
 }

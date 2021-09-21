@@ -156,7 +156,7 @@ public final class Span {
 
     @Override
     public final String toString() {
-        return "Span{" + text + '}';
+        return text;
     }
 
 }
