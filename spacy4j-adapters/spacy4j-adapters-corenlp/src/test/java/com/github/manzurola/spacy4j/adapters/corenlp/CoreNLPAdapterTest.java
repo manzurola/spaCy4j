@@ -74,7 +74,7 @@ public class CoreNLPAdapterTest {
     public void verifyParenthesisParse() {
         // a previous bug parsed ) as -RRB-
         Doc doc = spacy.nlp(":)");
-        assertEquals(doc.tokens().get(1).text(), ")");
+        assertEquals(doc.tokens().get(0).text(), ":)");
     }
 
     @Test
