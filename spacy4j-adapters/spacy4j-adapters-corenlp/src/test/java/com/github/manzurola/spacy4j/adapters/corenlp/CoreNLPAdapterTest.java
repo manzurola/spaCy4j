@@ -27,7 +27,7 @@ public class CoreNLPAdapterTest {
 
     @BeforeAll
     void setup() {
-        spacy = SpaCy.create(CoreNLPAdapter.create());
+        spacy = SpaCy.create(CoreNLPAdapter.forEnglish());
     }
 
     @Test
@@ -35,10 +35,15 @@ public class CoreNLPAdapterTest {
 
         ObjectMapper mapper = new ObjectMapper();
         mapper.registerModule(new SpaCyJacksonModule());
-        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("doc.json");
+        InputStream inputStream = this
+            .getClass()
+            .getClassLoader()
+            .getResourceAsStream("doc.json");
         Doc expected = mapper.readValue(inputStream, Doc.class);
 
-        Doc actual = spacy.nlp("My head feels like a frisbee. Twice it's normal size. It feels like a football.");
+        Doc actual = spacy.nlp(
+            "My head feels like a frisbee. Twice it's normal size. It feels " +
+            "like a football.");
 
         Assertions.assertEquals(expected, actual);
     }
@@ -87,7 +92,9 @@ public class CoreNLPAdapterTest {
     }
 
     @Test
-    public void verifyParseTextSucceeds() throws IOException, URISyntaxException {
+    public void verifyParseTextSucceeds() throws
+                                          IOException,
+                                          URISyntaxException {
         URL url = this.getClass().getClassLoader().getResource("testtext.txt");
         List<String> lines = Files.readAllLines(Path.of(url.toURI()));
         for (String line : lines) {

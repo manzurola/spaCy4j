@@ -29,6 +29,7 @@ class DocSerializer extends StdSerializer<Doc> {
                           JsonGenerator jgen,
                           SerializerProvider provider) throws IOException {
         JsonDoc jsonDoc = new JsonDoc();
+        jsonDoc.text = doc.text();
         for (Span span : doc.sentences()) {
             List<TokenData> data = span.data();
             JsonSentence sentence = new JsonSentence();

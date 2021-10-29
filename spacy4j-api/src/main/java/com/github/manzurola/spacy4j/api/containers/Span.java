@@ -1,7 +1,5 @@
 package com.github.manzurola.spacy4j.api.containers;
 
-import com.github.manzurola.spacy4j.api.utils.TextUtils;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,13 +14,19 @@ public final class Span {
     private final Doc doc;
     private final int start;
     private final int end;
-    private final String text;
+    private final int startChar;
+    private final int endChar;
 
     private Span(Doc doc, int start, int end) {
         this.doc = Objects.requireNonNull(doc);
         this.start = start;
         this.end = end;
-        this.text = TextUtils.writeTextWithoutWs(doc.data().subList(start, end));
+        this.startChar = doc.isEmpty() ?
+                         doc.text().length() :
+                         doc.token(start).charStart();
+        this.endChar = doc.isEmpty() ?
+                       doc.text().length() :
+                       doc.token(end - 1).charEnd();
     }
 
     public static Span create(Doc doc, int start, int end) {
@@ -40,8 +44,20 @@ public final class Span {
      * A string representation of the span text.
      */
     public final String text() {
-        return text;
+        return textWithWs().trim();
     }
+
+    /**
+     * The text content of the span with a trailing whitespace character if the
+     * last token has one.
+     */
+    public final String textWithWs() {
+        return tokens()
+            .stream()
+            .map(Token::textWithWs)
+            .collect(Collectors.joining());
+    }
+
 
     /**
      * Returns true if the span no has tokens, false otherwise.
@@ -49,32 +65,39 @@ public final class Span {
      * @return
      */
     public final boolean isEmpty() {
-        return end - start > 1;
+        return tokens().isEmpty();
     }
 
     /**
      * The character offset for the start of the span.
      */
     public final int startChar() {
-        return getToken(start).charStart();
+        return startChar;
     }
 
     /**
      * The character offset for the end of the span.
      */
     public final int endChar() {
-        return getToken(end - 1).charEnd();
+        return endChar;
     }
-
 
     /**
      * Get all tokens in this span.
      */
     public final List<Token> tokens() {
         return IntStream
-                .range(start, end)
-                .mapToObj(doc::token)
-                .collect(Collectors.toList());
+            .range(start, end)
+            .mapToObj(doc::token)
+            .collect(Collectors.toList());
+    }
+
+    public final Token first() {
+        return isEmpty() ? null : tokens().get(0);
+    }
+
+    public final Token last() {
+        return isEmpty() ? null : tokens().get(size() - 1);
     }
 
 
@@ -84,7 +107,7 @@ public final class Span {
      * @param i the index of the desired token.
      * @throws IndexOutOfBoundsException if i is out of bounds
      */
-    public final Token getToken(int i) {
+    public final Token token(int i) {
         Objects.checkIndex(i, size());
         return tokens().get(i);
     }
@@ -97,14 +120,15 @@ public final class Span {
     }
 
     /**
-     * The sentence span that this span is a part of. If the span happens to cross sentence boundaries, only the first
-     * sentence will be returned.
+     * The sentence span that this span is a part of. If the span happens to
+     * cross sentence boundaries, only the first sentence will be returned.
      */
     public final Span sentence() {
         return doc.sentences().stream()
-                .filter(s -> s.start() <= start() && s.end() > start())
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Could not find the sentence this span is a part of"));
+            .filter(s -> s.start() <= start() && s.end() > start())
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException(
+                "Could not find the sentence this span is a part of"));
     }
 
     /**
@@ -122,16 +146,17 @@ public final class Span {
     }
 
     /**
-     * The token with the shortest path to the root of the sentence (or the root itself). If multiple tokens are equally
-     * high in the tree, the first token is taken.
+     * The token with the shortest path to the root of the sentence (or the root
+     * itself). If multiple tokens are equally high in the tree, the first token
+     * is taken.
      */
     public final Optional<Token> root() {
         List<TokenData> data = doc.data().subList(start, end);
         return data
-                .stream()
-                .filter(t -> t.head() == 0)
-                .map(t -> doc.token(t.index()))
-                .findFirst();
+            .stream()
+            .filter(t -> t.head() == 0)
+            .map(t -> doc.token(t.index()))
+            .findFirst();
     }
 
     /**
@@ -143,8 +168,12 @@ public final class Span {
 
     @Override
     public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Span span = (Span) o;
         return start == span.start && end == span.end && doc.equals(span.doc);
     }
@@ -156,7 +185,7 @@ public final class Span {
 
     @Override
     public final String toString() {
-        return text;
+        return text();
     }
 
 }

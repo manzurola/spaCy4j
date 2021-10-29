@@ -34,15 +34,18 @@ public final class Token {
      * The parent sentence.
      */
     public final Span sentence() {
-        return doc.sentences()
-                .stream()
-                .filter(sentence -> {
-                    int firstTokenIndex = sentence.getToken(0).index();
-                    int lastTokenIndex = firstTokenIndex + sentence.size();
-                    return index >= firstTokenIndex && index < lastTokenIndex;
-                })
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("could not find parent sentence"));
+        return doc
+            .sentences()
+            .stream()
+            .filter(sentence -> {
+                int firstTokenIndex = sentence.first().index();
+                int lastTokenIndex = sentence.last().index();
+                return index >= firstTokenIndex && index < lastTokenIndex;
+            })
+            .findFirst()
+            .orElseThrow(() -> new IllegalStateException(
+                "could not find parent " +
+                "sentence"));
     }
 
     /**
@@ -50,6 +53,14 @@ public final class Token {
      */
     public final String text() {
         return data().text();
+    }
+
+    /**
+     * The text content of the token with a trailing whitespace character if
+     * this token has one.
+     */
+    public final String textWithWs() {
+        return data().text() + spaceAfter();
     }
 
     /**
@@ -74,7 +85,8 @@ public final class Token {
     }
 
     /**
-     * The number of unicode characters in the token, i.e. token.text().length().
+     * The number of unicode characters in the token, i.e.
+     * token.text().length().
      */
     public int length() {
         return text().length();
@@ -109,8 +121,9 @@ public final class Token {
     }
 
     /**
-     * Coarse-grained part-of-speech from the <a href="https://universaldependencies.org/docs/u/pos/">Universal POS tag
-     * set</a>.
+     * Coarse-grained part-of-speech from the
+     * <a href="https://universaldependencies.org/docs/u/pos/">Universal
+     * POS tag set</a>.
      */
     public final String pos() {
         return data().pos();
@@ -159,12 +172,13 @@ public final class Token {
      * A sequence of the token’s immediate syntactic children.
      */
     public final List<Token> children() {
-        return doc.data()
-                .stream()
-                .filter(t -> t.head() == data().index())
-                .map(TokenData::index)
-                .map(doc::token)
-                .collect(Collectors.toList());
+        return doc
+            .data()
+            .stream()
+            .filter(t -> t.head() == data().index())
+            .map(TokenData::index)
+            .map(doc::token)
+            .collect(Collectors.toList());
     }
 
     /**
@@ -182,7 +196,8 @@ public final class Token {
     }
 
     /**
-     * Does the token consist of whitespace characters? Equivalent to {@code text().isBlank()}
+     * Does the token consist of whitespace characters? Equivalent to {@code
+     * text().isBlank()}
      */
     public final boolean isWhitespace() {
         return text().isBlank();
@@ -215,8 +230,12 @@ public final class Token {
 
     @Override
     public final boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Token token = (Token) o;
         return data().equals(token.data());
     }
@@ -230,4 +249,5 @@ public final class Token {
     public final String toString() {
         return text();
     }
+
 }

@@ -1,8 +1,10 @@
 package com.github.manzurola.spacy4j.api.utils;
 
+import com.github.manzurola.spacy4j.api.containers.Token;
 import com.github.manzurola.spacy4j.api.containers.TokenData;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TextUtils {
 
@@ -19,8 +21,23 @@ public class TextUtils {
         }
         String spaceBefore = tokens.get(0).whitespaceBefore();
         return tokens.stream()
-                .map(t -> t.text().concat(t.whitespaceAfter()))
-                .reduce(spaceBefore, String::concat);
+            .map(t -> t.text().concat(t.whitespaceAfter()))
+            .reduce(spaceBefore, String::concat);
+    }
+
+    /**
+     * Get the text represented by concatenating the tokens. Utility method that
+     * replaces tokens.stream().map(Token::textWithWs).collect(Collectors
+     * .joining())
+     *
+     * @param tokens
+     * @return
+     */
+    public static String concatTokenTextWithWs(List<Token> tokens) {
+        return tokens
+            .stream()
+            .map(Token::textWithWs)
+            .collect(Collectors.joining());
     }
 
 }
