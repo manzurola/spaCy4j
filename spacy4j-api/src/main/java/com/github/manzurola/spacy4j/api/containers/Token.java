@@ -96,7 +96,7 @@ public final class Token {
      * Leading whitespace characters if present, empty string otherwise.
      */
     public final String spaceBefore() {
-        return data().whitespaceAfter();
+        return data().whitespaceBefore();
     }
 
     /**
