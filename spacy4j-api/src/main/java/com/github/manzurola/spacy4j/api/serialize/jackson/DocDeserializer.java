@@ -31,6 +31,7 @@ class DocDeserializer extends StdDeserializer<Doc> {
 
         JsonDoc jsonDoc = mapper.readValue(parser, JsonDoc.class);
 
+        String text = jsonDoc.text;
         List<TokenData> data = jsonDoc.sentences
                 .stream()
                 .map(sentence -> sentence.tokens)
@@ -54,6 +55,6 @@ class DocDeserializer extends StdDeserializer<Doc> {
                 )
                 .collect(Collectors.toList());
 
-        return Doc.create(data);
+        return Doc.create(text, data);
     }
 }

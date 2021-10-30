@@ -150,7 +150,7 @@ public final class Doc {
 
     @Override
     public final String toString() {
-        return "Doc{" + text + '}';
+        return text;
     }
 
 }

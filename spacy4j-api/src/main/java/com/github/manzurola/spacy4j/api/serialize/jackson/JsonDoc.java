@@ -8,6 +8,7 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 class JsonDoc {
 
+    String text = "";
     List<JsonSentence> sentences = new ArrayList<>();
 
 }

@@ -5,7 +5,7 @@
     <parent>
         <artifactId>spacy4j-adapters</artifactId>
         <groupId>com.github.manzurola</groupId>
-        <version>0.2.0</version>
+        <version>0.3.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -14,7 +14,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <stanford-corenlp.version>4.2.2</stanford-corenlp.version>
+        <stanford-corenlp.version>4.3.0</stanford-corenlp.version>
     </properties>
 
     <dependencies>

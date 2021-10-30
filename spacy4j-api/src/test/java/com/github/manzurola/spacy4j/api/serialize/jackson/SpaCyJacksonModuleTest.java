@@ -1,6 +1,5 @@
 package com.github.manzurola.spacy4j.api.serialize.jackson;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.manzurola.spacy4j.api.containers.Doc;
 import com.github.manzurola.spacy4j.api.containers.TokenData;
@@ -231,16 +230,4 @@ public class SpaCyJacksonModuleTest {
         return Doc.create(tokens);
     }
 
-    @Test
-    void testJson2() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.registerModule(new SpaCyJacksonModule());
-
-        String text = "My head feels like a frisbee. Twice it's normal size. It feels like a football.";
-
-
-//        String json = mapper.writeValueAsString(expected);
-//        Doc actual = mapper.readValue(json, Doc.class);
-//        Assertions.assertEquals(expected, actual);
-    }
 }
