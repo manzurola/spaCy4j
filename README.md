@@ -27,7 +27,7 @@ To use the spaCy Server adapter, add this to the dependencies section in your `p
 <dependency>
   <groupId>com.github.manzurola</groupId>
   <artifactId>spacy4j-adapters-spacy-server</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
 </dependency>
 ```
 
@@ -36,7 +36,7 @@ To use the CoreNLP adapter, add this to the dependencies section in your `pom.xm
 <dependency>
   <groupId>com.github.manzurola</groupId>
   <artifactId>spacy4j-adapters-corenlp</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
 </dependency>
 ```
 
