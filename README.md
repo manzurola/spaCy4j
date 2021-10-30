@@ -1,12 +1,12 @@
 # spaCy4J 🚀
 
+![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
+
 spaCy4J is a library that allows developers to use [spaCy](https://github.com/explosion/spaCy) in Java via [spaCy Server](https://github.com/neelkamath/spacy-server).
 It provides an API similar to spaCy, mimicking most of the functionality of Doc, Span and Token.  
 
 As it was originally developed for [CoreNLP](https://github.com/stanfordnlp/CoreNLP), an adapter that translates CoreNLP objects to spaCy4J
 containers is provided as well.
-
-![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
 
 ## Prerequisits
 
