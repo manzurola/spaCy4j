@@ -3,7 +3,6 @@
 ![maven](https://github.com/manzurola/spacy-java/actions/workflows/maven.yml/badge.svg)
 
 A Java library for processing natural language text using [spaCy Server](https://github.com/neelkamath/spacy-server) or [CoreNLP](https://github.com/stanfordnlp/CoreNLP).
-Doc API design inspired by [spaCy](https://spacy.io/api/doc).
 
 ## Prerequisits
 
