@@ -22,7 +22,7 @@ To use the spaCy Server adapter, add this to the dependencies section in your `p
 <dependency>
   <groupId>io.github.manzurola</groupId>
   <artifactId>spacy4j-adapters-spacy-server</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
 </dependency>
 ```
 
