@@ -9,7 +9,6 @@ A Java library for processing natural language text using [spaCy Server](https:/
 Before you begin, ensure you have met the following requirements:
 
 * You have Java 11 installed.
-* You have access to Github Packages Maven registry as described [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages).
 
 Additionaly, to use the spacy-server adapter, ensure you have met the following requirements:
 
@@ -32,7 +31,7 @@ To use the CoreNLP adapter, add this to the dependencies section in your `pom.xm
 <dependency>
   <groupId>io.github.manzurola</groupId>
   <artifactId>spacy4j-adapters-corenlp</artifactId>
-  <version>0.3.0</version>
+  <version>0.4.0</version>
 </dependency>
 ```
 
