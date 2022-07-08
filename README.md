@@ -17,7 +17,7 @@ Additionaly, to use the spacy-server adapter, ensure you have met the following 
 
 ## Installing spaCy4J
 
-To use the spaCy Server adapter, add this to the dependencies section in your `pom.xml`:
+To use the spaCy Server adapter, add this to the dependencies section of your `pom.xml`:
 ```xml
 <dependency>
   <groupId>io.github.manzurola</groupId>
@@ -26,7 +26,7 @@ To use the spaCy Server adapter, add this to the dependencies section in your `p
 </dependency>
 ```
 
-To use the CoreNLP adapter, add this to the dependencies section in your `pom.xml`:
+To use the CoreNLP adapter, add this to the dependencies section of your `pom.xml`:
 ```xml
 <dependency>
   <groupId>io.github.manzurola</groupId>
